@@ -9,7 +9,7 @@ class Quote extends Component {
             <blockquote>
               <h1 className="title">{this.props.quote}</h1>
               <footer>
-                <cite>{this.props.author}</cite>
+                <cite>- {this.props.author}</cite>
               </footer>
             </blockquote>
           </div>
