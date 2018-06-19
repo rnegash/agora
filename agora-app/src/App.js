@@ -12,7 +12,10 @@ class App extends Component {
       <section>
         <NavBar />
 
-        <Quote />
+        <Quote
+          quote="The unexamined life is not worth living"
+          author="Socrates"
+        />
         <Response />
       </section>
     );

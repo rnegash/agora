@@ -7,17 +7,11 @@ class Quote extends Component {
         <div className="hero-body">
           <div className="container  has-text-centered">
             <blockquote>
-              <h1 className="title">
-                The unexamined life is not worth living{" "}
-              </h1>
+              <h1 className="title">{this.props.quote}</h1>
               <footer>
-                <cite>Socrates</cite>
+                <cite>{this.props.author}</cite>
               </footer>
             </blockquote>
-          </div>
-
-          <div className="container question">
-            <p className="has-text-centered">Do you think that this is true?</p>
           </div>
         </div>
       </section>
