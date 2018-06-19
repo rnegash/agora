@@ -5,6 +5,8 @@ class NavBar extends Component {
     return (
       <nav className="navbar-menu">
         <a className="navbar-item">Home</a>
+        <a className="navbar-item">My past responses</a>
+        <a className="navbar-item">Settings</a>
       </nav>
     );
   }

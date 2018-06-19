@@ -10,7 +10,7 @@ import "./App.css";
 
 class App extends Component {
   componentWillMount() {
-    this.getDailyQuote();
+    //this.getDailyQuote();
   }
 
   getDailyQuote() {
