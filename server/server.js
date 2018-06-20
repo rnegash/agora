@@ -17,7 +17,13 @@ let db = new sqlite3.Database(
 db.serialize(() => {
   db.run("PRAGMA foreign_keys = ON;");
   db.run(
-    "CREATE TABLE IF NOT EXISTS Challenge (id INTEGER PRIMARY KEY, statement TEXT, author TEXT, date TEXT, question TEXT);"
+    "CREATE TABLE IF NOT EXISTS Challenge (id INTEGER PRIMARY KEY ASC, statement TEXT, author TEXT, date TEXT, question TEXT);"
+  );
+  db.run(
+    "CREATE TABLE IF NOT EXISTS User (id INTEGER PRIMARY KEY ASC, email TEXT, alias TEXT, password TEXT);"
+  );
+  db.run(
+    "CREATE TABLE IF NOT EXISTS Response (id INTEGER PRIMARY KEY ASC, response TEXT, userId INTEGER, challengeId INTEGER, FOREIGN KEY(userId) REFERENCES User(id), FOREIGN KEY(challengeId) REFERENCES Challenge(id));"
   );
 });
 
