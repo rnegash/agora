@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import Quote from "./components/Quote.js";
 import NavBar from "./components/NavBar.js";
-import Response from "./components/Response.js";
+import Challenge from "./components/Challenge.js";
 
 import axios from "axios";
 
@@ -28,12 +27,7 @@ class App extends Component {
     return (
       <section>
         <NavBar />
-
-        <Quote
-          quote="The unexamined life is not worth living"
-          author="Socrates"
-        />
-        <Response />
+        <Challenge />
       </section>
     );
   }
