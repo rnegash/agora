@@ -1,5 +1,5 @@
 let express = require("express");
-let restapi = express();
+let api = express();
 
 let sqlite3 = require("sqlite3").verbose();
 
@@ -27,20 +27,25 @@ db.serialize(() => {
   );
 });
 
-db.close(err => {
-  if (err) {
-    return console.error(err.message);
-  }
-  console.log("Close the database connection.");
+api.get("/data", function(req, res) {
+  db.get("SELECT * FROM Response", function(err, row) {
+    res.json({ response: row });
+  });
 });
-/*
-db.serialize(function() {
+
+api.post("/data", function(req, res) {
   db.run(
-    "CREATE TABLE Challenge (id INTEGER PRIMARY KEY ASC, statement TEXT, author TEXT, date TEXT, question TEXT);"
+    "INSERT INTO Response(id, response, userID, challengeId) VALUES (?, ?, ?, ?);",
+    [null, "it was great", 1, 1],
+    function(err) {
+      if (err) {
+        return console.error(err.message);
+      }
+      console.log(`Rows inserted ${this.changes}`);
+    }
   );
-  db.run(
-    'INSERT INTO Challenge VALUES (1, "its the best", "me", "2018-01-01", "Is it really?")',
-    "Challenge",
-    0
-  );
-});*/
+  db.close();
+});
+
+api.listen(8080);
+console.log("Submit GET or POST to http://localhost:3000/data");

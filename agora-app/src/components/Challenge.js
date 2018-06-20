@@ -10,7 +10,12 @@ class Challenge extends Component {
           quote="The unexamined life is not worth living"
           author="Socrates"
         />
-        <Response question="Do you think that this is true?" />
+        <Response
+          question="Do you think that this is true?"
+          search={this.props.search}
+          onChange={this.props.onChange}
+          searchQuery={this.props.searchQuery}
+        />
       </section>
     );
   }
