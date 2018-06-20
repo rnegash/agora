@@ -1,2 +1,3 @@
 # agora
-Daily philosophy discussion forum
+
+Daily philosophy challenge app
