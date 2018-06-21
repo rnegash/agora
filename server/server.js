@@ -31,6 +31,15 @@ db.serialize(() => {
   );
 });
 
+api.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 api.get("/data", function(req, res) {
   db.get("SELECT * FROM Response", function(err, row) {
     res.json({ response: row });
@@ -38,9 +47,11 @@ api.get("/data", function(req, res) {
 });
 
 api.post("/data", function(req, res) {
+  let userResponse = req.body.response;
+  console.log("response ", userResponse);
   db.run(
     "INSERT INTO Response(id, response, userID, challengeId) VALUES (?, ?, ?, ?);",
-    [null, "it was great", 1, 1],
+    [null, userResponse, 1, 1],
     function(err) {
       if (err) {
         return console.error(err.message);

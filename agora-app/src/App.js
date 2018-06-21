@@ -33,9 +33,12 @@ class App extends Component {
   // }
 
   handleClick(e) {
-    console.log("hej");
+    let userResponse = this.state.inputString;
+    console.log("input ", userResponse);
     axios
-      .post("http://localhost:8080/data")
+      .post("http://localhost:8080/data", {
+        response: userResponse
+      })
       .then(function(response) {
         console.log(response);
       })
@@ -46,7 +49,6 @@ class App extends Component {
 
   handleChange(e) {
     this.setState({ inputString: e.target.value });
-    console.log(this.state.inputString);
   }
 
   render() {
