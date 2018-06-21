@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import Quote from "./Quote.js";
+import Statement from "./Statement.js";
 import Response from "./Response.js";
 
 class Challenge extends Component {
   render() {
     return (
       <section>
-        <Quote
-          quote="The unexamined life is not worth living"
+        <Statement
+          statement="The unexamined life is not worth living"
           author="Socrates"
         />
         <Response

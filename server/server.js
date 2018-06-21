@@ -48,7 +48,6 @@ api.get("/data", function(req, res) {
 
 api.post("/data", function(req, res) {
   let userResponse = req.body.response;
-  console.log("response ", userResponse);
   db.run(
     "INSERT INTO Response(id, response, userID, challengeId) VALUES (?, ?, ?, ?);",
     [null, userResponse, 1, 1],
@@ -57,11 +56,11 @@ api.post("/data", function(req, res) {
         return console.error(err.message);
       }
       console.log(`Rows inserted ${this.changes}`);
-      res.send("it worked");
+      res.send("posted response");
     }
   );
   //db.close();
 });
 
 api.listen(8080);
-console.log("Submit GET or POST to http://localhost:3000/data");
+console.log("Submit GET or POST to http://localhost:8080/data");

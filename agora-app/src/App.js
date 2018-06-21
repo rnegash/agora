@@ -17,24 +17,8 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillMount() {
-    //this.getDailyQuote();
-  }
-
-  // getDailyQuote() {
-  //   axios
-  //     .get("http://quotes.rest/qod.json")
-  //     .then(function(response) {
-  //       console.log(response.data.contents.quotes[0]);
-  //     })
-  //     .catch(function(error) {
-  //       console.log(error);
-  //     });
-  // }
-
   handleClick(e) {
     let userResponse = this.state.inputString;
-    console.log("input ", userResponse);
     axios
       .post("http://localhost:8080/data", {
         response: userResponse
