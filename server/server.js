@@ -1,7 +1,11 @@
 let express = require("express");
 let api = express();
+let bodyParser = require("body-parser");
 
 let sqlite3 = require("sqlite3").verbose();
+
+api.use(bodyParser.urlencoded({ extended: false }));
+api.use(bodyParser.json());
 
 let db = new sqlite3.Database(
   "./data/db.sqlite",
@@ -42,9 +46,10 @@ api.post("/data", function(req, res) {
         return console.error(err.message);
       }
       console.log(`Rows inserted ${this.changes}`);
+      res.send("it worked");
     }
   );
-  db.close();
+  //db.close();
 });
 
 api.listen(8080);
