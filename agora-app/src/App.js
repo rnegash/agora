@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import NavBar from "./components/NavBar.js";
 import Challenge from "./components/Challenge.js";
+import ResponseList from "./components/ResponseList.js";
 
 import axios from "axios";
 
@@ -24,7 +27,7 @@ class App extends Component {
         response: userResponse
       })
       .then(function(response) {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function(error) {
         console.log(error);
@@ -37,14 +40,31 @@ class App extends Component {
 
   render() {
     return (
-      <section>
-        <NavBar />
-        <Challenge
-          search={this.handleClick}
-          searchQuery={this.state.inputString}
-          onChange={this.handleChange}
-        />
-      </section>
+      <Router>
+        <div className="container">
+          <section>
+            <NavBar />
+          </section>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Challenge
+                  search={this.handleClick}
+                  searchQuery={this.state.inputString}
+                  onChange={this.handleChange}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/responses/"
+              render={props => <ResponseList />}
+            />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
