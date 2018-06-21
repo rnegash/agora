@@ -11,7 +11,7 @@ class ResponseList extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios
       .get("http://localhost:8080/response")
       .then(response => {
@@ -29,6 +29,16 @@ class ResponseList extends Component {
     return (
       <div className="columns is-centered">
         <div className="column  is-half is-narrow ">
+          <article className="message is-primary">
+            <div className="message-header">
+              <p>Success</p>
+              <button className="delete" aria-label="delete" />
+            </div>
+            <div className="message-body">
+              Your response has been stored and will be shared with other
+              thinkers around the world. Thanks for your participation :)
+            </div>
+          </article>
           {this.state.responses.map(response => (
             <div className="card" key={response.id}>
               <div className="card-content">

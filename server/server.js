@@ -41,7 +41,7 @@ api.use(function(req, res, next) {
 });
 
 api.get("/response", function(req, res) {
-  db.all("SELECT * FROM Response", function(err, rows) {
+  db.all("SELECT * FROM Response ORDER BY id DESC", function(err, rows) {
     //res.send(res);
     // rows.forEach(row => {
     //   console.log(row);
