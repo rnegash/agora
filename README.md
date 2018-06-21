@@ -5,9 +5,7 @@ Daily philosophy challenge app
 
 Setup:
 
-	Copy repository
-
-	do 'npm install'
+	npm install
 
 Run locally:
 
