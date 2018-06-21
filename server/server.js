@@ -40,13 +40,17 @@ api.use(function(req, res, next) {
   next();
 });
 
-api.get("/data", function(req, res) {
-  db.get("SELECT * FROM Response", function(err, row) {
-    res.json({ response: row });
+api.get("/data/response", function(req, res) {
+  db.all("SELECT * FROM Response", function(err, rows) {
+    //res.send(res);
+    // rows.forEach(row => {
+    //   console.log(row);
+    // });
+    res.send(rows);
   });
 });
 
-api.post("/data", function(req, res) {
+api.post("/data/response", function(req, res) {
   let userResponse = req.body.response;
   db.run(
     "INSERT INTO Response(id, response, userID, challengeId) VALUES (?, ?, ?, ?);",
