@@ -23,7 +23,7 @@ class App extends Component {
   handleClick(e) {
     let userResponse = this.state.inputString;
     axios
-      .post("http://localhost:8080/data/response", {
+      .post("http://localhost:8080/response", {
         response: userResponse
       })
       .then(function(response) {

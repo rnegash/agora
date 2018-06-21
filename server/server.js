@@ -40,7 +40,7 @@ api.use(function(req, res, next) {
   next();
 });
 
-api.get("/data/response", function(req, res) {
+api.get("/response", function(req, res) {
   db.all("SELECT * FROM Response", function(err, rows) {
     //res.send(res);
     // rows.forEach(row => {
@@ -50,7 +50,7 @@ api.get("/data/response", function(req, res) {
   });
 });
 
-api.post("/data/", function(req, res) {
+api.post("/response", function(req, res) {
   let userResponse = req.body.response;
   db.run(
     "INSERT INTO Response(id, response, userID, challengeId) VALUES (?, ?, ?, ?);",

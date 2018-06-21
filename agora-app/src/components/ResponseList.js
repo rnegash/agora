@@ -13,7 +13,7 @@ class ResponseList extends Component {
 
   componentWillMount() {
     axios
-      .get("http://localhost:8080/data/response")
+      .get("http://localhost:8080/response")
       .then(response => {
         console.log(response.data);
         let responses = response.data;
