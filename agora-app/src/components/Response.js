@@ -14,7 +14,7 @@ class Response extends Component {
           />
           <div className="level-right">
             <Link
-              to="/responses/"
+              to="/responses"
               className="button responseButton"
               onClick={this.props.search}
             >

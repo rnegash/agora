@@ -10,7 +10,7 @@ class NavBar extends Component {
         </Link>
         <a className="navbar-item">My past responses</a>
         <a className="navbar-item">Settings</a>
-        <Link to="/login" className="navbar-item">
+        <Link to="/login" className="navbar-end navbar-item">
           Login
         </Link>
       </nav>

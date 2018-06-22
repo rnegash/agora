@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import NavBar from "./components/NavBar.js";
+import Login from "./components/Login.js";
 import Challenge from "./components/Challenge.js";
 import ResponseList from "./components/ResponseList.js";
 
@@ -59,11 +60,8 @@ class App extends Component {
               )}
             />
 
-            <Route
-              exact
-              path="/responses/"
-              render={props => <ResponseList />}
-            />
+            <Route exact path="/responses" render={props => <ResponseList />} />
+            <Route exact path="/login" render={props => <Login />} />
           </Switch>
         </div>
       </Router>
