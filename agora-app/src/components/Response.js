@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 class Response extends Component {
   render() {
     return (
@@ -13,9 +13,16 @@ class Response extends Component {
             value={this.props.searchQuery}
           />
           <div className="level-right">
-            <a className="button responseButton" onClick={this.props.search}>
+            <Link
+              to="/responses"
+              className="button responseButton"
+              onClick={this.props.search}
+            >
               Answer
-            </a>
+            </Link>
+          </div>
+          <div className="level-right">
+            <p>and see other responses...</p>
           </div>
         </div>
       </div>

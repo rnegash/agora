@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import NavBar from "./components/NavBar.js";
+import Access from "./components/Access.js";
 import Challenge from "./components/Challenge.js";
+import ResponseList from "./components/ResponseList.js";
 
 import axios from "axios";
 
@@ -19,12 +23,13 @@ class App extends Component {
 
   handleClick(e) {
     let userResponse = this.state.inputString;
+
     axios
-      .post("http://localhost:8080/data", {
+      .post("http://localhost:8080/response", {
         response: userResponse
       })
       .then(function(response) {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function(error) {
         console.log(error);
@@ -37,14 +42,29 @@ class App extends Component {
 
   render() {
     return (
-      <section>
-        <NavBar />
-        <Challenge
-          search={this.handleClick}
-          searchQuery={this.state.inputString}
-          onChange={this.handleChange}
-        />
-      </section>
+      <Router>
+        <div className="container">
+          <section>
+            <NavBar />
+          </section>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Challenge
+                  search={this.handleClick}
+                  searchQuery={this.state.inputString}
+                  onChange={this.handleChange}
+                />
+              )}
+            />
+
+            <Route exact path="/responses" render={props => <ResponseList />} />
+            <Route exact path="/access" render={props => <Access />} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
