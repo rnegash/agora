@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Login extends Component {
+class Register extends Component {
   render() {
     return (
       <div className="container has-text-centered">
         <div className="column is-4 is-offset-4">
-          <h3 className="title has-text-grey">Login</h3>
+          <h3 className="title has-text-grey">Register</h3>
           <p className="subtitle has-text-grey">Please login to proceed.</p>
           <div className="box">
             <form>
@@ -14,9 +14,20 @@ class Login extends Component {
                 <div className="control">
                   <input
                     className="input is-large"
-                    placeholder="Your Email or Alias"
+                    placeholder="Your Email"
                     autofocus=""
                     type="email"
+                  />
+                </div>
+              </div>
+
+              <div className="field">
+                <div className="control">
+                  <input
+                    className="input is-large"
+                    placeholder="Your Alias"
+                    autofocus=""
+                    type="text"
                   />
                 </div>
               </div>
@@ -30,14 +41,19 @@ class Login extends Component {
                   />
                 </div>
               </div>
+
               <div className="field">
-                <label className="checkbox">
-                  <input type="checkbox" />
-                  Remember me
-                </label>
+                <div className="control">
+                  <input
+                    className="input is-large"
+                    placeholder="Confirm Password"
+                    type="password"
+                  />
+                </div>
               </div>
+
               <button className="button is-block is-info is-large is-fullwidth">
-                Login
+                Register
               </button>
             </form>
           </div>
@@ -46,4 +62,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default Register;
