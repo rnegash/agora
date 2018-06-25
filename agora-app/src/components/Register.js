@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class Register extends Component {
   render() {
@@ -15,7 +14,7 @@ class Register extends Component {
                   <input
                     className="input is-large"
                     placeholder="Your Email"
-                    autofocus=""
+                    autoFocus=""
                     type="email"
                   />
                 </div>
@@ -26,7 +25,7 @@ class Register extends Component {
                   <input
                     className="input is-large"
                     placeholder="Your Alias"
-                    autofocus=""
+                    autoFocus=""
                     type="text"
                   />
                 </div>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class Login extends Component {
   render() {
@@ -9,14 +8,17 @@ class Login extends Component {
           <h3 className="title has-text-grey">Login</h3>
           <p className="subtitle has-text-grey">Please login to proceed.</p>
           <div className="box">
-            <form>
+            <form action="http://localhost:8080/access" method="post">
               <div className="field">
                 <div className="control">
                   <input
                     className="input is-large"
                     placeholder="Your Email or Alias"
-                    autofocus=""
+                    autoFocus=""
+                    name="username"
+                    id="username"
                     type="email"
+                    defaultValue="rufael@hej.com"
                   />
                 </div>
               </div>
@@ -26,17 +28,23 @@ class Login extends Component {
                   <input
                     className="input is-large"
                     placeholder="Your Password"
+                    name="password"
+                    id="password"
                     type="password"
+                    defaultValue="hejhej"
                   />
                 </div>
               </div>
-              <div className="field">
+              {/*<div className="field">
                 <label className="checkbox">
                   <input type="checkbox" />
                   Remember me
                 </label>
-              </div>
-              <button className="button is-block is-info is-large is-fullwidth">
+              </div>*/}
+              <button
+                type="submit"
+                className="button is-block is-info is-large is-fullwidth"
+              >
                 Login
               </button>
             </form>

@@ -12,6 +12,7 @@
     "nightmare-upload": "^0.1.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "sqlite3": "^4.0.0"
   },
   "devDependencies": {},
