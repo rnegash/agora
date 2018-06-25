@@ -141,6 +141,23 @@ api.post(
     failureRedirect: "http://localhost:3000/bad"
   })
 );
+
+api.post("/register", function(req, res) {
+  let username = req.body.username;
+  let password = req.body.password;
+
+  db.run(
+    "INSERT INTO User (id, email, alias, password) VALUES(?, ?, ?, ?);",
+    [null, username, username, password],
+    function(err) {
+      if (err) {
+        return console.error(err.message);
+      }
+      console.log(`Rows inserted ${this.changes}`);
+      res.send(`Registered user with email ${username}`);
+    }
+  );
+});
 //api.use("/access", router);
 api.get("/ping", function(req, res) {
   res.status(200).send("pong!");

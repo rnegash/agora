@@ -8,13 +8,15 @@ class Register extends Component {
           <h3 className="title has-text-grey">Register</h3>
           <p className="subtitle has-text-grey">Please login to proceed.</p>
           <div className="box">
-            <form>
+            <form action="http://localhost:8080/register" method="post">
               <div className="field">
                 <div className="control">
                   <input
                     className="input is-large"
                     placeholder="Your Email"
                     autoFocus=""
+                    name="username"
+                    id="username"
                     type="email"
                   />
                 </div>
@@ -24,18 +26,9 @@ class Register extends Component {
                 <div className="control">
                   <input
                     className="input is-large"
-                    placeholder="Your Alias"
-                    autoFocus=""
-                    type="text"
-                  />
-                </div>
-              </div>
-
-              <div className="field">
-                <div className="control">
-                  <input
-                    className="input is-large"
                     placeholder="Your Password"
+                    name="password"
+                    id="password"
                     type="password"
                   />
                 </div>
