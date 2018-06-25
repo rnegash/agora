@@ -4,6 +4,9 @@ let bodyParser = require("body-parser");
 
 let sqlite3 = require("sqlite3").verbose();
 
+let passport = require("passport");
+let localStrategy = require("passport-local").Strategy;
+
 api.use(bodyParser.urlencoded({ extended: false }));
 api.use(bodyParser.json());
 
