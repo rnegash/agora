@@ -5,6 +5,8 @@ const path = require("path");
 const db = require("../config/db.js");
 
 router.get("/", (req, res) => {
+  console.log(req);
+
   if (req.isAuthenticated()) {
     res.send(`Welcome back, ${req.user.username}!`);
   } else {
@@ -21,10 +23,10 @@ router.post(
   })
 );
 
-// router.get("/logout", function(req, res) {
-//   res.redirect("http://localhost:3000/");
-//   req.logout();
-// });
+router.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("http://localhost:3000/");
+});
 
 router.get("/me", (req, res) => {
   console.log(req.user);
