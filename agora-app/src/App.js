@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import NavBar from "./components/NavBar.js";
 import Access from "./components/Access.js";
-import Challenge from "./components/Challenge.js";
+import TodaysChallenge from "./components/TodaysChallenge.js";
 import ResponseList from "./components/ResponseList.js";
 
 import axios from "axios";
@@ -55,7 +55,7 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <Challenge
+                <TodaysChallenge
                   search={this.handleClick}
                   searchQuery={this.state.inputString}
                   onChange={this.handleChange}

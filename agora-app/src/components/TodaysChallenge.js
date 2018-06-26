@@ -4,7 +4,7 @@ import Response from "./Response.js";
 
 import axios from "axios";
 
-class Challenge extends Component {
+class TodaysChallenge extends Component {
   constructor(props) {
     super(props);
 
@@ -19,10 +19,8 @@ class Challenge extends Component {
         params: { challengeId: this.props.challengeId }
       })
       .then(response => {
-        console.log(response.data);
         let challenge = response.data;
         this.setState({ challenge: challenge });
-        console.log(challenge);
       })
       .catch(error => {
         console.log(error);
@@ -46,4 +44,4 @@ class Challenge extends Component {
     );
   }
 }
-export default Challenge;
+export default TodaysChallenge;
