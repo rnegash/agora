@@ -41,6 +41,7 @@ class App extends Component {
   }
 
   render() {
+    let challengeId = 1;
     return (
       <Router>
         <div className="container">
@@ -56,11 +57,18 @@ class App extends Component {
                   search={this.handleClick}
                   searchQuery={this.state.inputString}
                   onChange={this.handleChange}
+                  challengeId={challengeId}
                 />
               )}
             />
 
-            <Route exact path="/responses" render={props => <ResponseList />} />
+            <Route
+              exact
+              path="/responses"
+              render={props => (
+                <ResponseList {...props} challengeId={challengeId} />
+              )}
+            />
             <Route exact path="/access" render={props => <Access />} />
           </Switch>
         </div>

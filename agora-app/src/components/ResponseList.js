@@ -20,7 +20,7 @@ class ResponseList extends Component {
   getOtherUsersAnswers(currentUserId) {
     axios
       .get("http://localhost:8080/response", {
-        params: { userId: currentUserId }
+        params: { userId: currentUserId, challengeId: this.props.challengeId }
       })
       .then(response => {
         console.log(response.data);

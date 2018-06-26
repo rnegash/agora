@@ -6,9 +6,11 @@ let db = require("../config/db.js");
 
 router.get("/response", function(req, res) {
   let userId = req.query.userId;
+  let challengeId = req.query.challengeId;
   db.all(
-    "SELECT * FROM Response WHERE userId!=? ORDER BY id DESC",
+    "SELECT * FROM Response WHERE userId!=? AND challengeId=? ORDER BY id DESC",
     userId,
+    challengeId,
     function(err, rows) {
       //res.send(res);
       // rows.forEach(row => {

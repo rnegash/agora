@@ -16,7 +16,7 @@ class Challenge extends Component {
   componentDidMount() {
     axios
       .get("http://localhost:8080/challenge", {
-        params: { challengeId: 4 }
+        params: { challengeId: this.props.challengeId }
       })
       .then(response => {
         console.log(response.data);
