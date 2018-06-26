@@ -30,7 +30,7 @@ class ResponseList extends Component {
         console.log(error);
       });
   }
-
+  //not using atm
   getAliasForResponse(currentUserId) {
     axios
       .get("http://localhost:8080/alias", {

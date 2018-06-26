@@ -14,9 +14,13 @@ class TodaysChallenge extends Component {
   }
 
   componentDidMount() {
+    this.getTodaysChallenge(this.props.challengeId);
+  }
+
+  getTodaysChallenge(id) {
     axios
       .get("http://localhost:8080/challenge", {
-        params: { challengeId: this.props.challengeId }
+        params: { challengeId: id }
       })
       .then(response => {
         let challenge = response.data;
