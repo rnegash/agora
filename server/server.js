@@ -10,6 +10,7 @@ let localStrategy = require("passport-local").Strategy;
 let session = require("express-session");
 let access = require("./routes/access.js");
 let db = require("./config/db.js");
+let dbroutes = require("./routes/db.js");
 
 require("./config/passport.js");
 
@@ -31,31 +32,7 @@ api.use(function(req, res, next) {
   next();
 });
 
-api.get("/response", function(req, res) {
-  db.all("SELECT * FROM Response ORDER BY id DESC", function(err, rows) {
-    //res.send(res);
-    // rows.forEach(row => {
-    //   console.log(row);
-    // });
-    res.send(rows);
-  });
-});
-
-api.post("/response", function(req, res) {
-  let userResponse = req.body.response;
-  db.run(
-    "INSERT INTO Response(id, response, userID, challengeId) VALUES (?, ?, ?, ?);",
-    [null, userResponse, 1, 1],
-    function(err) {
-      if (err) {
-        return console.error(err.message);
-      }
-      console.log(`Rows inserted ${this.changes}`);
-      res.send("posted response");
-    }
-  );
-  //db.close();
-});
+api.use(dbroutes);
 
 api.use(passport.initialize());
 api.use(
