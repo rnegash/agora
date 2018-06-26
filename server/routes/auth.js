@@ -15,11 +15,16 @@ router.get("/", (req, res) => {
 router.post(
   "/access",
   passport.authenticate("local", {
-    successRedirect: "http://localhost:3000/good",
+    successRedirect: "/me",
     failureRedirect: "http://localhost:3000/bad",
     failureFlash: true
   })
 );
+
+router.get("/me", (req, res) => {
+  console.log(req.user);
+  res.send(req.user);
+});
 
 router.post("/register", function(req, res) {
   let username = req.body.username;
