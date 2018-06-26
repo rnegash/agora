@@ -1,19 +1,23 @@
-let express = require("express");
-let app = express();
-let bodyParser = require("body-parser");
-let router = express.Router();
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const router = express.Router();
 const cookieParser = require("cookie-parser");
-let sqlite3 = require("sqlite3").verbose();
+const sqlite3 = require("sqlite3").verbose();
+const morgan = require("morgan");
 
-let passport = require("passport");
-let localStrategy = require("passport-local").Strategy;
-let session = require("express-session");
+const passport = require("passport");
+const localStrategy = require("passport-local").Strategy;
+const session = require("express-session");
 
-let cors = require("./config/cors.js");
-let db = require("./config/db.js");
-let authRoutes = require("./routes/auth.js");
-let apiRoutes = require("./routes/api.js");
+const cors = require("./config/cors.js");
+const db = require("./config/db.js");
+const authRoutes = require("./routes/auth.js");
+const apiRoutes = require("./routes/api.js");
 
+require("./config/passport.js");
+
+app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -34,7 +38,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-require("./config/passport.js");
 
 app.use(authRoutes);
 

@@ -1,8 +1,8 @@
-let express = require("express");
-let router = express.Router();
-let passport = require("passport");
-let path = require("path");
-let db = require("../config/db.js");
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
+const path = require("path");
+const db = require("../config/db.js");
 
 router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
@@ -20,6 +20,11 @@ router.post(
     failureFlash: true
   })
 );
+
+// router.get("/logout", function(req, res) {
+//   res.redirect("http://localhost:3000/");
+//   req.logout();
+// });
 
 router.get("/me", (req, res) => {
   console.log(req.user);

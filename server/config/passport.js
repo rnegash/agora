@@ -1,6 +1,6 @@
-let passport = require("passport");
-let localStrategy = require("passport-local").Strategy;
-let db = require("./db.js");
+const passport = require("passport");
+const localStrategy = require("passport-local").Strategy;
+const db = require("./db.js");
 
 passport.use(
   new localStrategy(function(username, password, done) {

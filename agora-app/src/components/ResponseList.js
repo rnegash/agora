@@ -30,6 +30,7 @@ class ResponseList extends Component {
         console.log(error);
       });
   }
+
   //not using atm
   getAliasForResponse(currentUserId) {
     axios
@@ -52,7 +53,6 @@ class ResponseList extends Component {
           <article className="message is-primary">
             <div className="message-header">
               <p>Success</p>
-              <button className="delete" aria-label="delete" />
             </div>
             <div className="message-body">
               Your response has been stored and will be shared with other

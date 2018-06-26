@@ -13,6 +13,14 @@ class NavBar extends Component {
         <Link to="/access" className="navbar-end navbar-item">
           Login / Register
         </Link>
+        <Link
+          action="http://localhost:8080/logout"
+          method="get"
+          to="/"
+          className="navbar-item"
+        >
+          Logout
+        </Link>
       </nav>
     );
   }

@@ -1,8 +1,8 @@
-let express = require("express");
-let router = express.Router();
-let passport = require("passport");
-let path = require("path");
-let db = require("../config/db.js");
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
+const path = require("path");
+const db = require("../config/db.js");
 
 router.get("/response", function(req, res) {
   let userId = req.query.userId;
