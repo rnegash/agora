@@ -2,6 +2,7 @@ let express = require("express");
 let router = express.Router();
 let passport = require("passport");
 let path = require("path");
+let db = require("../config/db.js");
 
 router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
@@ -23,10 +24,11 @@ router.post(
 router.post("/register", function(req, res) {
   let username = req.body.username;
   let password = req.body.password;
+  let alias = req.body.username.slice(0, username.indexOf("@"));
 
   db.run(
     "INSERT INTO User (id, email, alias, password) VALUES(?, ?, ?, ?);",
-    [null, username, username, password],
+    [null, username, alias, password],
     function(err) {
       if (err) {
         return console.error(err.message);

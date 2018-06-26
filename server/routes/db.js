@@ -19,7 +19,7 @@ router.get("/response", function(req, res) {
   );
 });
 
-router.get("/user", function(req, res) {
+router.get("/alias", function(req, res) {
   let userId = req.query.userId;
   db.get("SELECT alias FROM User WHERE id=?", userId, function(err, row) {
     if (err) {

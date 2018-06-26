@@ -7,7 +7,8 @@ class ResponseList extends Component {
     super(props);
 
     this.state = {
-      responses: []
+      responses: [],
+      userNames: []
     };
   }
 
@@ -31,7 +32,20 @@ class ResponseList extends Component {
       });
   }
 
-  getUsernameForResponse() {}
+  getAliasForResponse(currentUserId) {
+    axios
+      .get("http://localhost:8080/alias", {
+        params: { userId: currentUserId }
+      })
+      .then(response => {
+        console.log(response.data);
+        let userNames = response.data;
+        this.setState({ userNames: userNames });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   render() {
     return (
