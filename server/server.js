@@ -88,6 +88,7 @@ api.use(
     saveUninitialized: false
   })
 );
+api.use(passport.session());
 
 passport.use(
   new localStrategy(function(username, password, done) {
@@ -138,8 +139,12 @@ api.post(
   "/access",
   passport.authenticate("local", {
     successRedirect: "http://localhost:3000/good",
-    failureRedirect: "http://localhost:3000/bad"
-  })
+    failureRedirect: "http://localhost:3000/bad",
+    failureFlash: true
+  }),
+  function(req, res) {
+    res.json({ message: "Success", username: req.user.username });
+  }
 );
 
 api.post("/register", function(req, res) {
