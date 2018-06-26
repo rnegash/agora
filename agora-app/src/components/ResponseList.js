@@ -12,8 +12,15 @@ class ResponseList extends Component {
   }
 
   componentDidMount() {
+    let currentUserId = 1;
+    this.getOtherUsersAnswers(currentUserId);
+  }
+
+  getOtherUsersAnswers(currentUserId) {
     axios
-      .get("http://localhost:8080/response")
+      .get("http://localhost:8080/response", {
+        params: { userId: currentUserId }
+      })
       .then(response => {
         console.log(response.data);
         let responses = response.data;
@@ -23,7 +30,8 @@ class ResponseList extends Component {
         console.log(error);
       });
   }
-  //          {this.state.responses.map(response => <p>{response.id}</p>)}
+
+  getUsernameForResponse() {}
 
   render() {
     return (
@@ -44,7 +52,9 @@ class ResponseList extends Component {
               <div className="card-content">
                 <div className="media">
                   <div className="media-content">
-                    <p className="subtitle is-6">user id - {response.userId}</p>
+                    <p className="subtitle is-6">
+                      user alias - {response.userId}
+                    </p>
                   </div>
                 </div>
                 <div className="content">{response.response}</div>
