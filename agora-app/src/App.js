@@ -15,7 +15,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputString: ""
+      inputString: "",
+      currentChallenge: 4
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -26,7 +27,8 @@ class App extends Component {
 
     axios
       .post("http://localhost:8080/response", {
-        response: userResponse
+        response: userResponse,
+        challengeId: this.state.currentChallenge
       })
       .then(function(response) {
         //console.log(response);
@@ -41,7 +43,7 @@ class App extends Component {
   }
 
   render() {
-    let challengeId = 1;
+    let challengeId = this.state.currentChallenge;
     return (
       <Router>
         <div className="container">

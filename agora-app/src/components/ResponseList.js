@@ -23,7 +23,6 @@ class ResponseList extends Component {
         params: { userId: currentUserId, challengeId: this.props.challengeId }
       })
       .then(response => {
-        console.log(response.data);
         let responses = response.data;
         this.setState({ responses: responses });
       })
@@ -38,7 +37,6 @@ class ResponseList extends Component {
         params: { userId: currentUserId }
       })
       .then(response => {
-        console.log(response.data);
         let userNames = response.data;
         this.setState({ userNames: userNames });
       })
