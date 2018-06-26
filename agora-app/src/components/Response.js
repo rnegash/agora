@@ -5,7 +5,7 @@ class Response extends Component {
     return (
       <div className="columns is-centered">
         <div className="column  is-half is-narrow ">
-          <label className="label">Do you think that this is true?</label>
+          <label className="label">{this.props.question}</label>
           <textarea
             className="textarea"
             placeholder="e.g. Hello world"

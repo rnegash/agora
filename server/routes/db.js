@@ -29,6 +29,16 @@ router.get("/alias", function(req, res) {
   });
 });
 
+router.get("/challenge", function(req, res) {
+  let challengeId = req.query.challengeId;
+  db.get("SELECT * FROM Challenge WHERE id=?", challengeId, function(err, row) {
+    if (err) {
+      return console.error(err.message);
+    }
+    res.send(row);
+  });
+});
+
 router.post("/response", function(req, res) {
   let userResponse = req.body.response;
   db.run(
