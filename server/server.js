@@ -1,5 +1,5 @@
 let express = require("express");
-let api = express();
+let app = express();
 let bodyParser = require("body-parser");
 let router = express.Router();
 const cookieParser = require("cookie-parser");
@@ -14,14 +14,14 @@ let db = require("./config/db.js");
 let authRoutes = require("./routes/auth.js");
 let apiRoutes = require("./routes/api.js");
 
-api.use(bodyParser.urlencoded({ extended: false }));
-api.use(bodyParser.json());
-api.use(cookieParser());
-api.use(cors);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cors);
 
-api.use(apiRoutes);
+app.use(apiRoutes);
 
-api.use(
+app.use(
   session({
     secret: "secret",
     resave: false,
@@ -32,11 +32,11 @@ api.use(
   })
 );
 
-api.use(passport.initialize());
-api.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 require("./config/passport.js");
 
-api.use(authRoutes);
+app.use(authRoutes);
 
-api.listen(8080);
+app.listen(8080);
 console.log("Submit to http://localhost:8080/");

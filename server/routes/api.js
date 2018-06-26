@@ -44,7 +44,6 @@ router.post("/response", function(req, res) {
   let userResponse = req.body.response;
   let userId = req.body.userId;
   let challengeId = req.body.challengeId;
-  console.log(req.body);
   db.run(
     "INSERT INTO Response(id, response, userId, challengeId) VALUES (?, ?, ?, ?);",
     [null, userResponse, userId, challengeId],
@@ -52,7 +51,7 @@ router.post("/response", function(req, res) {
       if (err) {
         console.error(err.message);
       }
-      res.send("posted response");
+      res.send(`posted response ${userResponse} ${userId} ${challengeId}`);
     }
   );
   //db.close();
