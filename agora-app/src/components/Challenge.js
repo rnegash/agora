@@ -7,11 +7,11 @@ class Challenge extends Component {
     return (
       <section>
         <Statement
-          statement="The unexamined life is not worth living"
-          author="Socrates"
+          statement="Is humanity headed in the right or wrong direction?"
+          author=""
         />
         <Response
-          question="Do you think that this is true?"
+          question="Why do you think so? Give reasons for your answer."
           search={this.props.search}
           onChange={this.props.onChange}
           searchQuery={this.props.searchQuery}
