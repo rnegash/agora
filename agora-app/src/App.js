@@ -16,8 +16,8 @@ class App extends Component {
     super(props);
     this.state = {
       inputString: "",
-      userId: 3,
-      currentChallenge: 1
+      userId: 2,
+      currentChallenge: 3
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -76,7 +76,11 @@ class App extends Component {
               exact
               path="/responses"
               render={props => (
-                <ResponseList {...props} challengeId={challengeId} />
+                <ResponseList
+                  {...props}
+                  challengeId={challengeId}
+                  currentUser={this.state.userId}
+                />
               )}
             />
             <Route exact path="/access" render={props => <Access />} />

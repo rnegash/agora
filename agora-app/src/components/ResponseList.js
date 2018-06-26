@@ -13,7 +13,7 @@ class ResponseList extends Component {
   }
 
   componentDidMount() {
-    let currentUserId = 1;
+    let currentUserId = this.props.currentUser;
     this.getOtherUsersAnswers(currentUserId);
   }
 
