@@ -46,4 +46,4 @@ api.use(passport.session());
 api.use(access);
 
 api.listen(8080);
-console.log("Submit GET or POST to http://localhost:8080/");
+console.log("Submit to http://localhost:8080/");

@@ -24,7 +24,10 @@ class App extends Component {
 
   handleClick(e) {
     let userResponse = this.state.inputString;
+    this.postResponse(userResponse);
+  }
 
+  postResponse(userResponse) {
     axios
       .post("http://localhost:8080/response", {
         response: userResponse,
