@@ -42,10 +42,12 @@ router.get("/challenge", function(req, res) {
 
 router.post("/response", function(req, res) {
   let userResponse = req.body.response;
+  let userId = req.body.userId;
   let challengeId = req.body.challengeId;
+  console.log(req.body);
   db.run(
     "INSERT INTO Response(id, response, userId, challengeId) VALUES (?, ?, ?, ?);",
-    [null, userResponse, 1, challengeId],
+    [null, userResponse, userId, challengeId],
     function(err) {
       if (err) {
         console.error(err.message);

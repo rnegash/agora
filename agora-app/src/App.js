@@ -16,7 +16,8 @@ class App extends Component {
     super(props);
     this.state = {
       inputString: "",
-      currentChallenge: 3
+      userId: 3,
+      currentChallenge: 1
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -24,14 +25,18 @@ class App extends Component {
 
   handleClick(e) {
     let userResponse = this.state.inputString;
-    this.postResponse(userResponse);
+    let userId = this.state.userId;
+    let challengeId = this.state.currentChallenge;
+    this.postResponse(userResponse, userId, challengeId);
   }
 
-  postResponse(userResponse) {
+  postResponse(userResponse, userId, challengeId) {
+    console.log(arguments);
     axios
       .post("http://localhost:8080/response", {
         response: userResponse,
-        challengeId: this.state.currentChallenge
+        userId: userId,
+        challengeId: challengeId
       })
       .then(function(response) {
         //console.log(response);

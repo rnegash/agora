@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 router.post(
   "/access",
   passport.authenticate("local", {
-    successRedirect: "/me",
+    successRedirect: "http://localhost:3000/good",
     failureRedirect: "http://localhost:3000/bad",
     failureFlash: true
   })
@@ -38,7 +38,6 @@ router.post("/register", function(req, res) {
       if (err) {
         return console.error(err.message);
       }
-      console.log(`Rows inserted ${this.changes}`);
       res.send(`Registered user with email ${username}`);
     }
   );

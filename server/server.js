@@ -14,8 +14,6 @@ let db = require("./config/db.js");
 let authRoutes = require("./routes/auth.js");
 let apiRoutes = require("./routes/api.js");
 
-require("./config/passport.js");
-
 api.use(bodyParser.urlencoded({ extended: false }));
 api.use(bodyParser.json());
 api.use(cookieParser());
@@ -36,6 +34,7 @@ api.use(
 
 api.use(passport.initialize());
 api.use(passport.session());
+require("./config/passport.js");
 
 api.use(authRoutes);
 
