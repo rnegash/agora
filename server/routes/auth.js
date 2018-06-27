@@ -4,16 +4,6 @@ const passport = require("passport");
 const path = require("path");
 const db = require("../config/db.js");
 
-router.get("/", (req, res) => {
-  console.log(req);
-
-  if (req.isAuthenticated()) {
-    res.send(`Welcome back, ${req.user.username}!`);
-  } else {
-    res.send("Hello World!");
-  }
-});
-
 router.post(
   "/access",
   passport.authenticate("local", {
@@ -22,15 +12,16 @@ router.post(
     failureFlash: true
   })
 );
-
+router.get("/access", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.send(`Welcome back, ${req.user.username}!`);
+  } else {
+    res.send(`Hello World!, ${req}`);
+  }
+});
 router.get("/logout", function(req, res) {
   req.logout();
-  res.redirect("http://localhost:3000/");
-});
-
-router.get("/me", (req, res) => {
-  console.log(req.user);
-  res.send(req.user);
+  res.redirect("/access");
 });
 
 router.post("/register", function(req, res) {

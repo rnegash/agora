@@ -12,10 +12,8 @@ passport.use(
       password,
       function(err, row) {
         if (!row) {
-          console.log("no user");
           return done(null, false);
         } else {
-          console.log("should login", row);
           return done(null, row);
         }
       }
@@ -24,13 +22,13 @@ passport.use(
 );
 
 passport.serializeUser(function(user, done) {
-  console.log("called serializeUser");
+  console.log(user);
   done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
   console.log("called deserializeUser");
-  db.get("SELECT, id, email FROM User WHERE id = ?", id, function(err, row) {
+  db.get("SELECT * FROM User WHERE id = ?", id, function(err, row) {
     if (!row) {
       return done(null, false);
     } else {

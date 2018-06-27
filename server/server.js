@@ -28,7 +28,7 @@ app.use(apiRoutes);
 app.use(
   session({
     secret: "secret",
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
       httpOnly: false
