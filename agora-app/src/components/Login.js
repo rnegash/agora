@@ -19,7 +19,7 @@ class Login extends Component {
                     name="username"
                     id="username"
                     type="email"
-                    defaultValue="rufael@hej.com"
+                    defaultValue="birgit@hej.com"
                   />
                 </div>
               </div>
@@ -33,7 +33,7 @@ class Login extends Component {
                     name="password"
                     id="password"
                     type="password"
-                    defaultValue="hejhej"
+                    defaultValue="hejhejhej"
                   />
                 </div>
               </div>

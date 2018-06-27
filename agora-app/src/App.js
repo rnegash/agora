@@ -17,10 +17,22 @@ class App extends Component {
     this.state = {
       inputString: "",
       userId: 3,
-      currentChallenge: 4
+      currentChallenge: 3
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillMount() {
+    //this.setState({ userId: this.getLoggedInUserId() });
+    axios
+      .get("http://localhost:8080/access", { withCredentials: true })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   handleClick(e) {
@@ -33,11 +45,15 @@ class App extends Component {
   postResponse(userResponse, userId, challengeId) {
     console.log(arguments);
     axios
-      .post("http://localhost:8080/response", {
-        response: userResponse,
-        userId: userId,
-        challengeId: challengeId
-      })
+      .post(
+        "http://localhost:8080/response",
+        {
+          response: userResponse,
+          userId: userId,
+          challengeId: challengeId
+        },
+        { withCredentials: true }
+      )
       .then(function(response) {
         //console.log(response);
       })

@@ -12,18 +12,17 @@ const session = require("express-session");
 
 const cors = require("./config/cors.js");
 const db = require("./config/db.js");
-const authRoutes = require("./routes/auth.js");
+
 const apiRoutes = require("./routes/api.js");
+const authRoutes = require("./routes/auth.js");
 
 require("./config/passport.js");
 
 app.use(morgan("dev"));
-//app.use(cookieParser("secret"));
+app.use(cookieParser("secret"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors);
-
-app.use(apiRoutes);
 
 app.use(
   session({
@@ -40,6 +39,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(authRoutes);
+app.use(apiRoutes);
 
 app.listen(8080);
 console.log("Submit to http://localhost:8080/");

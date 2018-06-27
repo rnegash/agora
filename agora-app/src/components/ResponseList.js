@@ -13,14 +13,14 @@ class ResponseList extends Component {
   }
 
   componentDidMount() {
-    let currentUserId = this.props.currentUser;
-    this.getOtherUsersAnswers(currentUserId);
+    this.getOtherUsersAnswers();
   }
 
-  getOtherUsersAnswers(currentUserId) {
+  getOtherUsersAnswers() {
     axios
       .get("http://localhost:8080/response", {
-        params: { userId: currentUserId, challengeId: this.props.challengeId }
+        params: { challengeId: this.props.challengeId },
+        withCredentials: true
       })
       .then(response => {
         let responses = response.data;

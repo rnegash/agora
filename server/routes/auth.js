@@ -5,8 +5,8 @@ const db = require("../config/db.js");
 
 router.get("/access", (req, res) => {
   if (req.isAuthenticated()) {
-    console.log("Welcome back " + req.session.user);
-    res.send("Welcome back " + req.user);
+    console.log(`Welcome back ${req.user.alias}`);
+    res.send(`Welcome back ${req.user}`);
   } else {
     res.send("Hello world!");
   }
@@ -15,7 +15,7 @@ router.get("/access", (req, res) => {
 router.post(
   "/access",
   passport.authenticate("local", {
-    successRedirect: "http://localhost:3000/",
+    successRedirect: "http://localhost:3000/access",
     failureRedirect: "http://localhost:3000/bad"
   })
 );
