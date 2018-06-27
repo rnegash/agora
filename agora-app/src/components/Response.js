@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 class Response extends Component {
   render() {
     return (
@@ -23,7 +24,9 @@ class Response extends Component {
           </div>
           <div className="level-right">
             <p>and see other responses...</p>
+            <br />
           </div>
+          <p>{document.cookie}</p>
         </div>
       </div>
     );

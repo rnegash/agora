@@ -1,27 +1,30 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const path = require("path");
 const db = require("../config/db.js");
+
+router.get("/access", (req, res) => {
+  if (req.isAuthenticated()) {
+    console.log("Welcome back " + req.session.user);
+    res.send("Welcome back " + req.user);
+  } else {
+    res.send("Hello world!");
+  }
+});
 
 router.post(
   "/access",
   passport.authenticate("local", {
     successRedirect: "http://localhost:3000/good",
-    failureRedirect: "http://localhost:3000/bad",
-    failureFlash: true
+    failureRedirect: "http://localhost:3000/bad"
   })
 );
-router.get("/access", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.send(`Welcome back, ${req.user.username}!`);
-  } else {
-    res.send(`Hello World!, ${req}`);
-  }
-});
+
 router.get("/logout", function(req, res) {
-  req.logout();
-  res.redirect("/access");
+  //req.logout();
+  //https://stackoverflow.com/questions/13758207/why-is-passportjs-in-node-not-removing-session-on-logout
+  res.clearCookie("connect.sid");
+  res.redirect("http://localhost:3000/");
 });
 
 router.post("/register", function(req, res) {

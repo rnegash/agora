@@ -18,9 +18,9 @@ const apiRoutes = require("./routes/api.js");
 require("./config/passport.js");
 
 app.use(morgan("dev"));
+//app.use(cookieParser("secret"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(cors);
 
 app.use(apiRoutes);
@@ -28,7 +28,7 @@ app.use(apiRoutes);
 app.use(
   session({
     secret: "secret",
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     cookie: {
       httpOnly: false

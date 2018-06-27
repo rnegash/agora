@@ -15,6 +15,7 @@ class Login extends Component {
                     className="input is-large"
                     placeholder="Your Email or Alias"
                     autoFocus=""
+                    ref="username"
                     name="username"
                     id="username"
                     type="email"
@@ -28,6 +29,7 @@ class Login extends Component {
                   <input
                     className="input is-large"
                     placeholder="Your Password"
+                    ref="password"
                     name="password"
                     id="password"
                     type="password"
@@ -35,12 +37,6 @@ class Login extends Component {
                   />
                 </div>
               </div>
-              {/*<div className="field">
-                <label className="checkbox">
-                  <input type="checkbox" />
-                  Remember me
-                </label>
-              </div>*/}
               <button
                 type="submit"
                 className="button is-block is-info is-large is-fullwidth"

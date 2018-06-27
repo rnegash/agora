@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 class NavBar extends Component {
@@ -8,16 +8,28 @@ class NavBar extends Component {
         <Link to="/" className="navbar-item">
           Home
         </Link>
-        <a className="navbar-item">My past responses</a>
-        <a className="navbar-item">Settings</a>
-        <Link to="/access" className="navbar-end navbar-item">
-          Login / Register
-        </Link>
-        <a href="http://localhost:8080/logout" className="navbar-item">
-          Logout
-        </a>
+
+        {document.cookie.length === 0 ? (
+          <Link to="/access" className="navbar-end navbar-item">
+            Login / Register
+          </Link>
+        ) : (
+          <Fragment>
+            <a className="navbar-item">My past responses</a>
+            <a className="navbar-item">Settings</a>
+            <a
+              href="http://localhost:8080/logout"
+              className="navbar-end navbar-item"
+            >
+              Logout
+            </a>
+          </Fragment>
+        )}
       </nav>
     );
   }
 }
 export default NavBar;
+/*
+
+        */
