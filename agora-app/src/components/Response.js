@@ -26,7 +26,6 @@ class Response extends Component {
             <p>and see other responses...</p>
             <br />
           </div>
-          <p>{document.cookie}</p>
         </div>
       </div>
     );
