@@ -40,8 +40,8 @@ class MyPastResponses extends Component {
                 <div className="media">
                   <div className="media-content">
                     <p className="subtitle is-6">
-                      {response.statement} <br />
-                      {response.question}
+                      <b>{response.statement}</b> <br />
+                      <i>{response.question}</i>
                     </p>
                   </div>
                 </div>
