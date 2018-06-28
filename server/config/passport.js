@@ -20,12 +20,10 @@ passport.use(
 );
 
 passport.serializeUser(function(user, done) {
-  //console.log("serialize user, ", user);
   done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  //console.log("deserializeUser id ", id);
   db.get("SELECT * FROM User WHERE id = ?", id, function(err, row) {
     if (!row) {
       return done(null, false);

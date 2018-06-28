@@ -100,7 +100,7 @@ class App extends Component {
             <Route exact path="/access" render={props => <Access />} />
             <Route
               exact
-              path="/myPastResponses"
+              path="/my-past-responses"
               render={props => <MyPastResponses challengeId={challengeId} />}
             />
           </Switch>

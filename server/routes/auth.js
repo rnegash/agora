@@ -21,8 +21,6 @@ router.post(
 );
 
 router.get("/logout", function(req, res) {
-  //req.logout();
-  //https://stackoverflow.com/questions/13758207/why-is-passportjs-in-node-not-removing-session-on-logout
   res.clearCookie("connect.sid");
   res.redirect("http://localhost:3000/");
 });

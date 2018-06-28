@@ -1,4 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
+
 let connection = new sqlite3.Database(
   "./data/db.sqlite",
   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,

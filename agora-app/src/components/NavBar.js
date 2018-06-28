@@ -25,7 +25,7 @@ class NavBar extends Component {
         ) : (
           <Fragment>
             <NavLink
-              to="/myPastResponses"
+              to="/my-past-responses"
               className="navbar-item"
               activeClassName="is-active"
             >
