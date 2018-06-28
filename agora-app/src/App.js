@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   componentWillMount() {
-    //this.setState({ userId: this.getLoggedInUserId() });
     axios
       .get("http://localhost:8080/access", { withCredentials: true })
       .then(function(response) {

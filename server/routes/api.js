@@ -35,7 +35,7 @@ router.get("/response", function(req, res) {
 });
 
 router.get("/response/user", function(req, res) {
-  let userId = req.user === undefined ? 0 : req.user.id;
+  let userId = req.user.id;
   db.all(
     "SELECT * FROM Response WHERE userId=? ORDER BY id DESC",
     userId,
