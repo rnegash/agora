@@ -9,6 +9,7 @@ class Response extends Component {
           <label className="label">{this.props.question}</label>
           <textarea
             className="textarea"
+            rows="10"
             placeholder="In my opinion..."
             onChange={this.props.onChange}
             value={this.props.searchQuery}
