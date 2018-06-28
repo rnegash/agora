@@ -10,7 +10,7 @@ router.get("/response", function(req, res) {
   let challengeId = req.query.challengeId;
   if (userId === 0) {
     db.all(
-      "SELECT * FROM Response WHERE challengeId=? ORDER BY id DESC",
+      "SELECT Response.id, response, userId, User.alias, challengeId FROM Response INNER JOIN User on User.id = Response.userId WHERE challengeId=? ORDER BY Response.id DESC",
       challengeId,
       function(err, rows) {
         if (err) {
@@ -21,7 +21,7 @@ router.get("/response", function(req, res) {
     );
   } else {
     db.all(
-      "SELECT * FROM Response WHERE userId!=? AND challengeId=? ORDER BY id DESC",
+      "SELECT Response.id, response, userId, User.alias, challengeId FROM Response INNER JOIN User on User.id = Response.userId WHERE Response.userId!=? AND challengeId=? ORDER BY Response.id DESC",
       userId,
       challengeId,
       function(err, rows) {
@@ -48,7 +48,7 @@ router.get("/response/user", function(req, res) {
   );
 });
 
-router.get("/alias", function(req, res) {
+router.get("/user", function(req, res) {
   let userId = req.user === undefined ? 0 : req.user.id;
   db.get("SELECT alias FROM User WHERE id=?", userId, function(err, row) {
     if (err) {

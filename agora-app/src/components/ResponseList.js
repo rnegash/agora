@@ -64,9 +64,7 @@ class ResponseList extends Component {
               <div className="card-content">
                 <div className="media">
                   <div className="media-content">
-                    <p className="subtitle is-6">
-                      user alias - {response.userId}
-                    </p>
+                    <p className="subtitle is-6">{response.alias}</p>
                   </div>
                 </div>
                 <div className="content">{response.response}</div>
