@@ -16,7 +16,6 @@ class App extends Component {
     super(props);
     this.state = {
       inputString: "",
-      userId: 3,
       currentChallenge: 3
     };
     this.handleClick = this.handleClick.bind(this);
@@ -37,19 +36,17 @@ class App extends Component {
 
   handleClick(e) {
     let userResponse = this.state.inputString;
-    let userId = this.state.userId;
     let challengeId = this.state.currentChallenge;
-    this.postResponse(userResponse, userId, challengeId);
+    this.postResponse(userResponse, challengeId);
   }
 
-  postResponse(userResponse, userId, challengeId) {
+  postResponse(userResponse, challengeId) {
     console.log(arguments);
     axios
       .post(
         "http://localhost:8080/response",
         {
           response: userResponse,
-          userId: userId,
           challengeId: challengeId
         },
         { withCredentials: true }
