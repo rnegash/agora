@@ -37,7 +37,9 @@ router.get("/response", function(req, res) {
 router.get("/response/user", function(req, res) {
   let userId = req.user.id;
   db.all(
-    "SELECT * FROM Response WHERE userId=? ORDER BY id DESC",
+    "SELECT Response.id, response, userId, challengeId, Challenge.statement, Challenge.question FROM Response INNER JOIN Challenge on Challenge.id = Response.challengeId WHERE Response.userId=? ORDER BY Response.id DESC",
+
+    //"SELECT * FROM Response WHERE userId=? ORDER BY id DESC",
     userId,
     function(err, rows) {
       if (err) {
