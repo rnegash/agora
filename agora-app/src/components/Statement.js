@@ -8,9 +8,11 @@ class Statement extends Component {
           <div className="container  has-text-centered">
             <blockquote>
               <h1 className="title">{this.props.statement}</h1>
-              <footer>
-                <cite>- {this.props.author}</cite>
-              </footer>
+              {this.props.author && (
+                <footer>
+                  <cite>- {this.props.author}</cite>
+                </footer>
+              )}
             </blockquote>
           </div>
         </div>
