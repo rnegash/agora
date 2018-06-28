@@ -9,8 +9,6 @@
   margin: 10px 0px;
 }
 
-.logo {
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: center;
+.is-active {
+  font-weight: bold;
 }
