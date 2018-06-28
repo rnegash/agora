@@ -4,15 +4,16 @@ import { Link } from "react-router-dom";
 class NavBar extends Component {
   render() {
     return (
-      <nav className="navbar-menu">
+      <nav className="navbar">
         <Link to="/" className="navbar-item">
           Home
         </Link>
-
         {document.cookie.length === 0 ? (
-          <Link to="/access" className="navbar-end navbar-item">
-            Login / Register
-          </Link>
+          <Fragment>
+            <Link to="/access" className="navbar-end navbar-item">
+              Login / Register
+            </Link>
+          </Fragment>
         ) : (
           <Fragment>
             <Link to="/myPastResponses" className="navbar-item">

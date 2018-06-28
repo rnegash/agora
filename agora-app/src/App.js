@@ -17,7 +17,7 @@ class App extends Component {
     super(props);
     this.state = {
       inputString: "",
-      currentChallenge: 1
+      currentChallenge: 3
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
