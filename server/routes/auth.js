@@ -15,8 +15,8 @@ router.get("/access", (req, res) => {
 router.post(
   "/access",
   passport.authenticate("local", {
-    successRedirect: "http://localhost:3000/access",
-    failureRedirect: "http://localhost:3000/bad"
+    successRedirect: "http://localhost:3000/",
+    failureRedirect: "http://localhost:3000/access"
   })
 );
 

@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar.js";
 import Access from "./components/Access.js";
 import TodaysChallenge from "./components/TodaysChallenge.js";
 import ResponseList from "./components/ResponseList.js";
+import MyPastResponses from "./components/MyPastResponses.js";
 
 import axios from "axios";
 
@@ -16,7 +17,7 @@ class App extends Component {
     super(props);
     this.state = {
       inputString: "",
-      currentChallenge: 3
+      currentChallenge: 1
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,7 +28,7 @@ class App extends Component {
     axios
       .get("http://localhost:8080/access", { withCredentials: true })
       .then(function(response) {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function(error) {
         console.log(error);
@@ -41,7 +42,6 @@ class App extends Component {
   }
 
   postResponse(userResponse, challengeId) {
-    console.log(arguments);
     axios
       .post(
         "http://localhost:8080/response",
@@ -97,6 +97,11 @@ class App extends Component {
               )}
             />
             <Route exact path="/access" render={props => <Access />} />
+            <Route
+              exact
+              path="/myPastResponses"
+              render={props => <MyPastResponses challengeId={challengeId} />}
+            />
           </Switch>
         </div>
       </Router>

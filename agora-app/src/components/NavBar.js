@@ -15,8 +15,9 @@ class NavBar extends Component {
           </Link>
         ) : (
           <Fragment>
-            <a className="navbar-item">My past responses</a>
-            <a className="navbar-item">Settings</a>
+            <Link to="/myPastResponses" className="navbar-item">
+              My past responses
+            </Link>
             <a
               href="http://localhost:8080/logout"
               className="navbar-end navbar-item"

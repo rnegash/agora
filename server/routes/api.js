@@ -20,6 +20,20 @@ router.get("/response", function(req, res) {
   );
 });
 
+router.get("/response/user", function(req, res) {
+  let userId = req.user.id;
+  db.all(
+    "SELECT * FROM Response WHERE userId=? ORDER BY id DESC",
+    userId,
+    function(err, rows) {
+      if (err) {
+        console.log(err);
+      }
+      res.send(rows);
+    }
+  );
+});
+
 router.get("/alias", function(req, res) {
   let userId = req.query.userId;
   db.get("SELECT alias FROM User WHERE id=?", userId, function(err, row) {
