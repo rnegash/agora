@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import NavBar from "./components/NavBar.js";
@@ -17,7 +17,7 @@ class App extends Component {
     super(props);
     this.state = {
       inputString: "",
-      currentChallenge: 3
+      currentChallenge: 2
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -75,12 +75,14 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <TodaysChallenge
-                  search={this.handleClick}
-                  searchQuery={this.state.inputString}
-                  onChange={this.handleChange}
-                  challengeId={challengeId}
-                />
+                <Fragment>
+                  <TodaysChallenge
+                    search={this.handleClick}
+                    searchQuery={this.state.inputString}
+                    onChange={this.handleChange}
+                    challengeId={challengeId}
+                  />
+                </Fragment>
               )}
             />
 

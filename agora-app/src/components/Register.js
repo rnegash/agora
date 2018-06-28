@@ -6,13 +6,13 @@ class Register extends Component {
       <div className="container has-text-centered">
         <div className="column is-4 is-offset-4">
           <h3 className="title has-text-grey">Register</h3>
-          <p className="subtitle has-text-grey">Please login to proceed.</p>
+          <p className="subtitle has-text-grey">Join the fun!</p>
           <div className="box">
             <form action="http://localhost:8080/register" method="post">
               <div className="field">
                 <div className="control">
                   <input
-                    className="input is-large"
+                    className="input is-medium"
                     placeholder="Your Email"
                     autoFocus=""
                     name="username"
@@ -25,7 +25,7 @@ class Register extends Component {
               <div className="field">
                 <div className="control">
                   <input
-                    className="input is-large"
+                    className="input is-medium"
                     placeholder="Your Password"
                     name="password"
                     id="password"
@@ -37,14 +37,14 @@ class Register extends Component {
               <div className="field">
                 <div className="control">
                   <input
-                    className="input is-large"
+                    className="input is-medium"
                     placeholder="Confirm Password"
                     type="password"
                   />
                 </div>
               </div>
 
-              <button className="button is-block is-info is-large is-fullwidth">
+              <button className="button is-block is-primary is-medium is-fullwidth">
                 Register
               </button>
             </form>

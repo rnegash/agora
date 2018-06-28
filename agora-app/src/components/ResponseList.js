@@ -64,7 +64,9 @@ class ResponseList extends Component {
               <div className="card-content">
                 <div className="media">
                   <div className="media-content">
-                    <p className="subtitle is-6">{response.alias}</p>
+                    <p className="subtitle is-6">
+                      <b>{response.alias}</b>
+                    </p>
                   </div>
                 </div>
                 <div className="content">{response.response}</div>

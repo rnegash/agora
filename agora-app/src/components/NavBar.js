@@ -5,7 +5,11 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="navbar">
-        <NavLink to="/" className="navbar-item" activeClassName="is-active">
+        <NavLink
+          to="/"
+          className="navbar-item logo"
+          activeClassName="is-active"
+        >
           Agora
         </NavLink>
         {document.cookie.length === 0 ? (

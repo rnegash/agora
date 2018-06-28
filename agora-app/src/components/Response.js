@@ -9,14 +9,14 @@ class Response extends Component {
           <label className="label">{this.props.question}</label>
           <textarea
             className="textarea"
-            placeholder="e.g. Hello world"
+            placeholder="In my opinion..."
             onChange={this.props.onChange}
             value={this.props.searchQuery}
           />
           <div className="level-right">
             <Link
               to="/responses"
-              className="button responseButton"
+              className="button is-outlined responseButton"
               onClick={this.props.search}
             >
               Answer
