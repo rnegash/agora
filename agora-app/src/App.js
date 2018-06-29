@@ -15,6 +15,7 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
+    // TODO: currentChallenge should be rotated
     this.state = {
       inputString: "",
       currentChallenge: 3
@@ -23,20 +24,10 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillMount() {
-    axios
-      .get("http://localhost:8080/access", { withCredentials: true })
-      .then(function(response) {
-        //console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  }
-
   handleClick(e) {
     let userResponse = this.state.inputString;
     let challengeId = this.state.currentChallenge;
+
     this.postResponse(userResponse, challengeId);
   }
 

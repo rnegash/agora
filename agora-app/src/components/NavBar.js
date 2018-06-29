@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
+  // TODO: dont check if user is logged in this way, httponly should be
+  //set to false
   render() {
     return (
       <nav className="navbar">

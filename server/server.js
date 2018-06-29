@@ -12,7 +12,7 @@ const session = require("express-session");
 
 const cors = require("./config/cors.js");
 const db = require("./config/db.js");
-
+// TODO: make sure db config is loaded and db is created if there is none
 const apiRoutes = require("./routes/api.js");
 const authRoutes = require("./routes/auth.js");
 
@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors);
 
+// TODO: hide secret
 app.use(
   session({
     secret: "secret",
