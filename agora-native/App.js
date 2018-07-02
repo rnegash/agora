@@ -5,6 +5,7 @@ import {
   KeyboardAvoidingView,
   StyleSheet
 } from "react-native";
+
 import {
   Toolbar,
   ToolbarContent,
@@ -16,40 +17,34 @@ import {
   BottomNavigation
 } from "react-native-paper";
 
-export default class App extends Component {
+import { createDrawerNavigator } from "react-navigation"; // 1.0.0-beta.27
+
+import Home from "./screens/Home.js";
+import Access from "./screens/Access.js";
+
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = { text: "" };
   }
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-        <Toolbar>
-          <ToolbarAction icon="menu" onPress={this._goBack} />
-          <ToolbarContent title="Agora" />
-          <ToolbarAction icon="more-vert" onPress={this._onMore} />
-        </Toolbar>
-        <View style={styles.challenge}>
-          <Headline>Why do we dream?</Headline>
-          <Text>Do you think that it is important for your daily life?</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Useless Placeholder"
-            value={this.state.text}
-            multiline={true}
-            onChangeText={text => this.setState({ text })}
-          />
-          <Button raised primary={true} onPress={() => console.log("Pressed")}>
-            Answer
-          </Button>
-          <Button raised primary={true} onPress={() => console.log("Pressed")}>
-            Login / Register
-          </Button>
-        </View>
-      </KeyboardAvoidingView>
+      <View style={styles.container}>
+        <MyNavigation />
+      </View>
     );
   }
 }
+export default App;
+
+const MyNavigation = createDrawerNavigator({
+  Home: {
+    screen: Home
+  },
+  Access: {
+    screen: Access
+  }
+});
 
 const styles = StyleSheet.create({
   container: {
