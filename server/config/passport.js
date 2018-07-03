@@ -1,9 +1,27 @@
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
+const tokenStrategy = require("passport-auth-token").Strategy;
 const db = require("./db.js");
 
 passport.use(
   new localStrategy(function(username, password, done) {
+    db.get(
+      "SELECT * from User WHERE email = ? AND password = ?",
+      username,
+      password,
+      function(err, row) {
+        if (!row) {
+          return done(null, false);
+        } else {
+          return done(null, row);
+        }
+      }
+    );
+  })
+);
+
+passport.use(
+  new tokenStrategy(function(token, done) {
     db.get(
       "SELECT * from User WHERE email = ? AND password = ?",
       username,
