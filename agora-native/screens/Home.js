@@ -18,17 +18,6 @@ class Home extends Component {
     title: "Home"
   };
 
-  componentDidMount() {
-    fetch("http://10.201.233.38:8080/access")
-      .then(response => response.text())
-      .then(responseJson => {
-        return console.log(responseJson);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
-
   onChangeText(e) {
     this.setState({ inputString: e.target.value });
   }
