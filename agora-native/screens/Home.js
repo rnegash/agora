@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { View, KeyboardAvoidingView, StyleSheet } from "react-native";
 import { Headline, Text, TextInput, Button } from "react-native-paper";
 
+import { createStackNavigator } from "react-navigation";
+import ViewOthersResponses from "./ViewOthersResponses.js";
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -16,15 +19,24 @@ class Home extends Component {
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <View style={styles.challenge}>
           <Headline>Why do we dream?</Headline>
-          <Text>Do you think that it is important for your daily life?</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="In my opinion..."
-            value={this.state.text}
-            multiline={true}
-            onChangeText={text => this.setState({ text })}
-          />
-          <Button raised primary={true} onPress={() => console.log("Pressed")}>
+          <View>
+            <Text>Do you think that it is important for your daily life?</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="In my opinion..."
+              value={this.state.text}
+              multiline={true}
+              onChangeText={text => this.setState({ text })}
+            />
+          </View>
+
+          <Button
+            raised
+            primary={true}
+            onPress={() =>
+              this.props.navigation.navigate("ViewOthersResponses")
+            }
+          >
             Answer
           </Button>
         </View>
@@ -40,7 +52,7 @@ const styles = StyleSheet.create({
   },
   challenge: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     margin: 20
   },
   textInput: {

@@ -3,7 +3,7 @@ import { Text } from "react-native-paper";
 
 class ViewOthersResponses extends Component {
   static navigationOptions = {
-    title: "Login / Register"
+    title: "View Others Responses"
   };
 
   render() {
