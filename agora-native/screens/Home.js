@@ -4,15 +4,56 @@ import { Headline, Text, TextInput, Button } from "react-native-paper";
 
 import { createStackNavigator } from "react-navigation";
 import ViewOthersResponses from "./ViewOthersResponses.js";
+import axios from "axios";
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: "" };
+    this.state = {
+      inputString: "",
+      currentChallenge: 3
+    };
   }
   static navigationOptions = {
     title: "Home"
   };
+
+  componentDidMount() {
+    fetch("http://10.201.233.38:8080/access")
+      .then(response => response.text())
+      .then(responseJson => {
+        return console.log(responseJson);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  onChangeText(e) {
+    this.setState({ inputString: e.target.value });
+  }
+
+  onPress(e) {
+    let userResponse = this.state.inputString;
+    let challengeId = this.state.currentChallenge;
+    console.log(userResponse, challengeId);
+
+    this.postResponse(userResponse, challengeId);
+  }
+
+  postResponse(userResponse, challengeId) {
+    axios
+      .post("http://10.201.233.38:8080/response", {
+        response: userResponse,
+        challengeId: challengeId
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 
   render() {
     return (
@@ -24,19 +65,13 @@ class Home extends Component {
             <TextInput
               style={styles.textInput}
               placeholder="In my opinion..."
-              value={this.state.text}
+              value={this.state.inputString}
               multiline={true}
-              onChangeText={text => this.setState({ text })}
+              onChangeText={inputString => this.setState({ inputString })}
             />
           </View>
 
-          <Button
-            raised
-            primary={true}
-            onPress={() =>
-              this.props.navigation.navigate("ViewOthersResponses")
-            }
-          >
+          <Button raised primary={true} onPress={() => this.onPress()}>
             Answer
           </Button>
         </View>

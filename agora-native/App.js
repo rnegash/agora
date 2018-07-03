@@ -16,6 +16,7 @@ import { createBottomTabNavigator } from "react-navigation"; // 1.0.0-beta.27
 import Home from "./screens/Home.js";
 import Access from "./screens/Access.js";
 import ViewOthersResponses from "./screens/ViewOthersResponses.js";
+import MyPastResponses from "./screens/MyPastResponses.js";
 
 import Icon from "react-native-vector-icons/Feather";
 const headerIcon = <Icon name="triangle" size={25} color="#fff" />;
@@ -31,7 +32,7 @@ class App extends Component {
             title="Agora"
             subtitle="Daily philosophy challenges"
           />
-          <ToolbarAction icon="more-vert" onPress={this._onMore} />
+          <ToolbarAction icon="info" onPress={this._onMore} />
         </Toolbar>
         <MyNavigation />
       </View>
@@ -47,6 +48,9 @@ const MyNavigation = createBottomTabNavigator(
     },
     ViewOthersResponses: {
       screen: ViewOthersResponses
+    },
+    MyPastResponses: {
+      screen: MyPastResponses
     },
     Access: {
       screen: Access

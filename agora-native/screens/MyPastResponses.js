@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Text, Title, ListItem } from "react-native-paper";
 import { View, KeyboardAvoidingView, StyleSheet, FlatList } from "react-native";
 
-class ViewOthersResponses extends Component {
+class MyPastResponses extends Component {
   static navigationOptions = {
-    title: "Others Responses"
+    title: "My Responses"
   };
 
   render() {
@@ -23,7 +23,7 @@ class ViewOthersResponses extends Component {
             { key: "aaf" },
             { key: "awfab" },
             { key: "bawf" },
-            { key: "bawdf" }
+            { key: "bdawf" }
           ]}
           renderItem={({ item }) => (
             <ListItem title={item.key} description={item.key} />
@@ -34,4 +34,4 @@ class ViewOthersResponses extends Component {
   }
 }
 
-export default ViewOthersResponses;
+export default MyPastResponses;
