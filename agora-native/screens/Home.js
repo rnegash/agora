@@ -28,6 +28,7 @@ class Home extends Component {
     console.log(userResponse, challengeId);
 
     this.postResponse(userResponse, challengeId);
+    this.props.navigation.navigate("ViewOthersResponses");
   }
 
   postResponse(userResponse, challengeId) {
