@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
 const db = require("../config/db.js");
 
 router.get("/access", (req, res) => {
@@ -12,13 +13,36 @@ router.get("/access", (req, res) => {
   }
 });
 
-router.post(
-  "/access",
-  passport.authenticate("local", {
-    successRedirect: "http://localhost:3000/",
-    failureRedirect: "http://localhost:3000/access"
-  })
-);
+// router.post(
+//   "/access",
+//   passport.authenticate("local", {
+//     successRedirect: "http://localhost:3000/",
+//     failureRedirect: "http://localhost:3000/access"
+//   })
+// );
+
+router.post("/access", function(req, res, next) {
+  passport.authenticate("local", { session: false }, (err, user, info) => {
+    if (err || !user) {
+      return res.status(400).json({
+        message: "Something is not right",
+        user: user
+      });
+    }
+
+    req.login(user, { session: false }, err => {
+      if (err) {
+        res.send(err);
+      }
+
+      // generate a signed son web token with the contents of user object and return it in the response
+
+      const token = jwt.sign(user, "your_jwt_secret");
+      console.log("token\n", token);
+      return res.json({ user, token });
+    });
+  })(req, res);
+});
 
 router.get("/logout", function(req, res) {
   res.clearCookie("connect.sid");

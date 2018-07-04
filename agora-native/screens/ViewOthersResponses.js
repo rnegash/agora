@@ -1,6 +1,12 @@
 import React, { Component } from "react";
+import {
+  View,
+  KeyboardAvoidingView,
+  StyleSheet,
+  FlatList,
+  Modal
+} from "react-native";
 import { Text, Title, ListItem } from "react-native-paper";
-import { View, KeyboardAvoidingView, StyleSheet, FlatList } from "react-native";
 
 import axios from "axios";
 
@@ -12,6 +18,7 @@ class ViewOthersResponses extends Component {
       responses: []
     };
   }
+
   static navigationOptions = {
     title: "Others Responses"
   };
@@ -35,6 +42,7 @@ class ViewOthersResponses extends Component {
   }
 
   render() {
+    const { visible } = this.state;
     return (
       <View>
         <FlatList

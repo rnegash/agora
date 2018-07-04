@@ -24,6 +24,7 @@ const tabIcon = <Icon name="triangle" size={25} color="#3498db" />;
 
 class App extends Component {
   render() {
+    console.ignoredYellowBox = ["Remote debugger"];
     return (
       <View style={styles.container}>
         <Toolbar>

@@ -48,16 +48,6 @@ router.get("/response/user", function(req, res) {
   );
 });
 
-router.get("/user", function(req, res) {
-  let userId = req.user === undefined ? 0 : req.user.id;
-  db.get("SELECT alias FROM User WHERE id=?", userId, function(err, row) {
-    if (err) {
-      console.error(err.message);
-    }
-    res.send(row);
-  });
-});
-
 router.get("/challenge", function(req, res) {
   let challengeId = req.query.challengeId;
   db.get("SELECT * FROM Challenge WHERE id=?", challengeId, function(err, row) {
