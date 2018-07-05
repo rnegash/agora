@@ -21,7 +21,6 @@ class Login extends Component {
       })
       .then(function(response) {
         const accessToken = response.data.token;
-        console.log("get", accessToken);
         localStorage.setItem("token", accessToken);
         window.location.reload();
       })

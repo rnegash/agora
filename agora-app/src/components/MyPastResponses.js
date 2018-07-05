@@ -17,8 +17,6 @@ class MyPastResponses extends Component {
 
   getMyResponses() {
     const token = localStorage.getItem("token");
-
-    console.log("localStorage", token);
     axios
       .get("http://localhost:8080/response/user", {
         params: { challengeId: this.props.challengeId },

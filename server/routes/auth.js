@@ -6,20 +6,11 @@ const db = require("../config/db.js");
 
 router.get("/access", (req, res) => {
   if (req.isAuthenticated()) {
-    console.log(`Welcome back ${req.user.alias}`);
     res.send(`Welcome back ${req.user}`);
   } else {
     res.send("Hello world!");
   }
 });
-
-// router.post(
-//   "/access",
-//   passport.authenticate("local", {
-//     successRedirect: "http://localhost:3000/",
-//     failureRedirect: "http://localhost:3000/access"
-//   })
-// );
 
 router.post("/access", function(req, res) {
   passport.authenticate("local", { session: true }, (err, user, info) => {

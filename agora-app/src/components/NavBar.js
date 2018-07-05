@@ -10,10 +10,7 @@ class NavBar extends Component {
 
     this.logoutClick = this.logoutClick.bind(this);
   }
-  // TODO: dont check if user is logged in this way, httponly should be
-  //set to false
 
-  // TODO logout With
   logoutClick() {
     localStorage.removeItem("token");
     window.location.reload();
