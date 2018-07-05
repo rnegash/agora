@@ -23,6 +23,7 @@ class Login extends Component {
         const accessToken = response.data.token;
         console.log("get", accessToken);
         localStorage.setItem("token", accessToken);
+        window.location.reload();
       })
       .catch(function(error) {
         console.log(error);

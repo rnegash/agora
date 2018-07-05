@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom";
 class NavBar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      redirect: false
+    };
 
     this.logoutClick = this.logoutClick.bind(this);
   }
@@ -13,7 +16,9 @@ class NavBar extends Component {
   // TODO logout With
   logoutClick() {
     localStorage.removeItem("token");
+    window.location.reload();
   }
+
   render() {
     return (
       <nav className="navbar">
