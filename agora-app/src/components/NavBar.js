@@ -2,10 +2,18 @@ import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.logoutClick = this.logoutClick.bind(this);
+  }
   // TODO: dont check if user is logged in this way, httponly should be
   //set to false
 
-  // TODO logout With         localStorage.removeItem('token');
+  // TODO logout With
+  logoutClick() {
+    localStorage.removeItem("token");
+  }
   render() {
     return (
       <nav className="navbar">
@@ -35,10 +43,7 @@ class NavBar extends Component {
             >
               My past responses
             </NavLink>
-            <a
-              href="http://localhost:8080/logout"
-              className="navbar-end navbar-item"
-            >
+            <a onClick={this.logoutClick} className="navbar-end navbar-item">
               Logout
             </a>
           </Fragment>

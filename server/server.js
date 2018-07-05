@@ -39,22 +39,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(
-//   "/api/user",
-//   passport.authenticate("jwt", function(err, user, info) {
-//     console.log("going into /user \n", err, user, info);
-//   }),
-//   function(req, res, next) {
-//     console.log("going into /user \nsend\n", err, user, info);
-//
-//     res.send(req.user);
-//   }
-// );
-
 app.use(authRoutes);
 app.use(apiRoutes);
 
-app.use(user);
+//app.use(user);
 
 app.listen(8080);
 console.log("Submit to http://localhost:8080/");

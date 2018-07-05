@@ -5,34 +5,38 @@ const path = require("path");
 const db = require("../config/db.js");
 
 // set if to 0 if not logged in
-router.get("/response", function(req, res) {
-  let userId = req.user === undefined ? 0 : req.user.id;
-  let challengeId = req.query.challengeId;
-  if (userId === 0) {
-    db.all(
-      "SELECT Response.id, response, userId, User.alias, challengeId FROM Response INNER JOIN User on User.id = Response.userId WHERE challengeId=? ORDER BY Response.id DESC",
-      challengeId,
-      function(err, rows) {
-        if (err) {
-          console.log(err);
+router.get(
+  "/response",
+  passport.authenticate("jwt", { session: false }),
+  function(req, res) {
+    let userId = req.user === undefined ? 0 : req.user.id;
+    let challengeId = req.query.challengeId;
+    if (userId === 0) {
+      db.all(
+        "SELECT Response.id, response, userId, User.alias, challengeId FROM Response INNER JOIN User on User.id = Response.userId WHERE challengeId=? ORDER BY Response.id DESC",
+        challengeId,
+        function(err, rows) {
+          if (err) {
+            console.log(err);
+          }
+          res.send(rows);
         }
-        res.send(rows);
-      }
-    );
-  } else {
-    db.all(
-      "SELECT Response.id, response, userId, User.alias, challengeId FROM Response INNER JOIN User on User.id = Response.userId WHERE Response.userId!=? AND challengeId=? ORDER BY Response.id DESC",
-      userId,
-      challengeId,
-      function(err, rows) {
-        if (err) {
-          console.log(err);
+      );
+    } else {
+      db.all(
+        "SELECT Response.id, response, userId, User.alias, challengeId FROM Response INNER JOIN User on User.id = Response.userId WHERE Response.userId!=? AND challengeId=? ORDER BY Response.id DESC",
+        userId,
+        challengeId,
+        function(err, rows) {
+          if (err) {
+            console.log(err);
+          }
+          res.send(rows);
         }
-        res.send(rows);
-      }
-    );
+      );
+    }
   }
-});
+);
 
 router.get(
   "/response/user",
@@ -65,20 +69,24 @@ router.get("/challenge", function(req, res) {
   });
 });
 
-router.post("/response", function(req, res) {
-  let userResponse = req.body.response;
-  let userId = req.user === undefined ? 0 : req.user.id;
-  let challengeId = req.body.challengeId;
-  db.run(
-    "INSERT INTO Response(id, response, userId, challengeId) VALUES (?, ?, ?, ?);",
-    [null, userResponse, userId, challengeId],
-    function(err) {
-      if (err) {
-        console.error(err.message);
+router.post(
+  "/response",
+  passport.authenticate("jwt", { session: false }),
+  function(req, res) {
+    let userResponse = req.body.response;
+    let userId = req.user === undefined ? 0 : req.user.id;
+    let challengeId = req.body.challengeId;
+    db.run(
+      "INSERT INTO Response(id, response, userId, challengeId) VALUES (?, ?, ?, ?);",
+      [null, userResponse, userId, challengeId],
+      function(err) {
+        if (err) {
+          console.error(err.message);
+        }
+        res.send(`posted response ${userResponse} ${userId} ${challengeId}`);
       }
-      res.send(`posted response ${userResponse} ${userId} ${challengeId}`);
-    }
-  );
-  //db.close();
-});
+    );
+    //db.close();
+  }
+);
 module.exports = router;

@@ -17,10 +17,14 @@ class ResponseList extends Component {
   }
 
   getOtherUsersAnswers() {
+    const token = localStorage.getItem("token");
+
     axios
       .get("http://localhost:8080/response", {
         params: { challengeId: this.props.challengeId },
-        withCredentials: true
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       })
       .then(response => {
         let responses = response.data;

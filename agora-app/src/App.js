@@ -32,13 +32,22 @@ class App extends Component {
   }
 
   postResponse(userResponse, challengeId) {
-    axios
-      .post("http://localhost:8080/response", {
+    const token = localStorage.getItem("token");
+    console.log("localStorage", token);
+
+    axios({
+      method: "post",
+      url: "http://localhost:8080/response",
+      data: {
         response: userResponse,
         challengeId: challengeId
-      })
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(function(response) {
-        //console.log(response);
+        console.log(response);
       })
       .catch(function(error) {
         console.log(error);
