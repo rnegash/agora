@@ -14,7 +14,6 @@ const db = require("./config/db.js");
 // TODO: make sure db config is loaded and db is created if there is none
 const apiRoutes = require("./routes/api.js");
 const authRoutes = require("./routes/auth.js");
-const user = require("./routes/user");
 
 require("./config/passport.js");
 
@@ -41,8 +40,6 @@ app.use(passport.session());
 
 app.use(authRoutes);
 app.use(apiRoutes);
-
-//app.use(user);
 
 app.listen(8080);
 console.log("Submit to http://localhost:8080/");

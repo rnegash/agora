@@ -69,13 +69,6 @@ class Login extends Component {
               >
                 Login
               </button>
-              <a
-                type="submit"
-                className="button is-block is-primary is-medium is-fullwidth"
-                href="http://localhost:8080/user"
-              >
-                protected page
-              </a>
             </form>
           </div>
         </div>
