@@ -8,6 +8,7 @@ const ExtractJWT = passportJWT.ExtractJwt;
 
 passport.use(
   new localStrategy(function(username, password, done) {
+    console.log(username);
     db.get(
       "SELECT * from User WHERE email = ? AND password = ?",
       username,

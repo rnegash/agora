@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 class NavBar extends Component {
   // TODO: dont check if user is logged in this way, httponly should be
   //set to false
+
+  // TODO logout With         localStorage.removeItem('token');
   render() {
     return (
       <nav className="navbar">
@@ -14,7 +16,7 @@ class NavBar extends Component {
         >
           Agora
         </NavLink>
-        {document.cookie.length === 0 ? (
+        {localStorage.getItem("token") === null ? (
           <Fragment>
             <NavLink
               to="/access"

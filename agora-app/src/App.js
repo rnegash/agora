@@ -33,14 +33,10 @@ class App extends Component {
 
   postResponse(userResponse, challengeId) {
     axios
-      .post(
-        "http://localhost:8080/response",
-        {
-          response: userResponse,
-          challengeId: challengeId
-        },
-        { withCredentials: true }
-      )
+      .post("http://localhost:8080/response", {
+        response: userResponse,
+        challengeId: challengeId
+      })
       .then(function(response) {
         //console.log(response);
       })

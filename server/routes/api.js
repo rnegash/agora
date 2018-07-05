@@ -34,19 +34,26 @@ router.get("/response", function(req, res) {
   }
 });
 
-router.get("/response/user", function(req, res) {
-  let userId = req.user.id;
-  db.all(
-    "SELECT Response.id, response, userId, challengeId, Challenge.statement, Challenge.question FROM Response INNER JOIN Challenge on Challenge.id = Response.challengeId WHERE Response.userId=? ORDER BY Response.id DESC",
-    userId,
-    function(err, rows) {
-      if (err) {
-        console.log(err);
+router.get(
+  "/response/user",
+  passport.authenticate("jwt", { session: false }),
+  function(req, res) {
+    let userId = req.user.id;
+    console.log("get list", userId);
+    db.all(
+      "SELECT Response.id, response, userId, challengeId, Challenge.statement, Challenge.question FROM Response INNER JOIN Challenge on Challenge.id = Response.challengeId WHERE Response.userId=? ORDER BY Response.id DESC",
+      userId,
+      function(err, rows) {
+        if (err) {
+          console.log(err);
+        }
+        console.log("get list", rows);
+
+        res.send(rows);
       }
-      res.send(rows);
-    }
-  );
-});
+    );
+  }
+);
 
 router.get("/challenge", function(req, res) {
   let challengeId = req.query.challengeId;

@@ -55,5 +55,6 @@ app.use(authRoutes);
 app.use(apiRoutes);
 
 app.use(user);
+
 app.listen(8080);
 console.log("Submit to http://localhost:8080/");

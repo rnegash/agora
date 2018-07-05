@@ -1,13 +1,41 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "birgit@hej.com",
+      password: "hejhejhej",
+      newUsername: "",
+      newPassword: ""
+    };
+    this.loginClick = this.loginClick.bind(this);
+  }
+  loginClick(e) {
+    e.preventDefault(); // NOTE: This prohibited cors issues??
+    axios
+      .post("http://localhost:8080/access", {
+        username: this.state.username,
+        password: this.state.password
+      })
+      .then(function(response) {
+        const accessToken = response.data.token;
+        console.log("get", accessToken);
+        localStorage.setItem("token", accessToken);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div className="container has-text-centered">
         <div className="column is-4 is-offset-4">
           <h3 className="title has-text-grey">Login</h3>
           <div className="box">
-            <form action="http://localhost:8080/access" method="post">
+            <form>
               <div className="field">
                 <div className="control">
                   <input
@@ -16,7 +44,6 @@ class Login extends Component {
                     autoFocus=""
                     ref="username"
                     name="username"
-                    id="username"
                     type="email"
                     defaultValue="birgit@hej.com"
                   />
@@ -30,7 +57,6 @@ class Login extends Component {
                     placeholder="Your Password"
                     ref="password"
                     name="password"
-                    id="password"
                     type="password"
                     defaultValue="hejhejhej"
                   />
@@ -39,9 +65,17 @@ class Login extends Component {
               <button
                 type="submit"
                 className="button is-block is-primary is-medium is-fullwidth"
+                onClick={this.loginClick}
               >
                 Login
               </button>
+              <a
+                type="submit"
+                className="button is-block is-primary is-medium is-fullwidth"
+                href="http://localhost:8080/user"
+              >
+                protected page
+              </a>
             </form>
           </div>
         </div>

@@ -16,10 +16,15 @@ class MyPastResponses extends Component {
   }
 
   getMyResponses() {
+    const token = localStorage.getItem("token");
+
+    console.log("localStorage", token);
     axios
       .get("http://localhost:8080/response/user", {
         params: { challengeId: this.props.challengeId },
-        withCredentials: true
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       })
       .then(response => {
         let responses = response.data;
