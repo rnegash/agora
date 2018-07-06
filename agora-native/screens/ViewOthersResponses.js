@@ -4,7 +4,8 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   FlatList,
-  Modal
+  Modal,
+  AsyncStorage
 } from "react-native";
 import { Text, Title, ListItem } from "react-native-paper";
 
@@ -28,17 +29,25 @@ class ViewOthersResponses extends Component {
   }
 
   getOtherUsersAnswers() {
-    axios
-      .get("http://10.201.233.38:8080/response", {
-        params: { challengeId: 3 }
-      })
-      .then(response => {
-        let responses = response.data;
-        this.setState({ responses: responses });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    const token = AsyncStorage.getItem("token").then(value => {
+      console.log("this is here", value);
+
+      axios
+        .get("http://10.201.233.38:8080/response", {
+          params: { challengeId: 3 },
+          headers: {
+            Authorization: `Bearer ${value}`
+          }
+        })
+        .then(function(response) {
+          let responses = response.data;
+          this.setState({ responses: responses });
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
   }
 
   render() {

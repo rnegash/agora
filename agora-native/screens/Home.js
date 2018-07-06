@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { View, KeyboardAvoidingView, StyleSheet } from "react-native";
+import {
+  View,
+  KeyboardAvoidingView,
+  StyleSheet,
+  AsyncStorage
+} from "react-native";
 import { Headline, Text, TextInput, Button } from "react-native-paper";
 
 import { createStackNavigator } from "react-navigation";
@@ -25,24 +30,38 @@ class Home extends Component {
   onPress(e) {
     let userResponse = this.state.inputString;
     let challengeId = this.state.currentChallenge;
-    console.log(userResponse, challengeId);
-
+    Promise.all(
+      AsyncStorage.getAllKeys().then(ks => ks.map(k => console.log(k)))
+    );
     this.postResponse(userResponse, challengeId);
     this.props.navigation.navigate("ViewOthersResponses");
   }
 
   postResponse(userResponse, challengeId) {
-    axios
-      .post("http://10.201.233.38:8080/response", {
-        response: userResponse,
-        challengeId: challengeId
+    console.log("this is here", userResponse);
+
+    const token = AsyncStorage.getItem("newtoken")
+      .then(value => {
+        console.log("this is here", value);
+        axios({
+          method: "post",
+          url: "http://10.201.233.38:8080/response",
+          data: {
+            response: userResponse,
+            challengeId: challengeId
+          },
+          headers: {
+            Authorization: `Bearer ${value}`
+          }
+        })
+          .then(function(response) {
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .done();
   }
 
   render() {

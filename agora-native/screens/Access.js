@@ -4,7 +4,8 @@ import {
   KeyboardAvoidingView,
   View,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  AsyncStorage
 } from "react-native";
 
 import axios from "axios";
@@ -13,20 +14,32 @@ class Access extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "someone@cool.com",
-      password: "hej",
+      username: "rufael@hej.com",
+      password: "hejhej",
       newUsername: "",
       newPassword: ""
     };
+    this.loginClick = this.loginClick.bind(this);
   }
   static navigationOptions = {
     title: "Login / Register"
   };
-  componentDidMount() {
+
+  loginClick(e) {
     axios
-      .get("http://10.201.233.38:8080/access")
-      .then(function(response) {
-        console.log("get ", response);
+      .post("http://10.201.233.38:8080/access", {
+        username: this.state.username,
+        password: this.state.password
+      })
+      .then(async function(response) {
+        console.log("logged in");
+        const accessToken = response.data.token;
+        console.log(accessToken);
+
+        await AsyncStorage.setItem("newtoken", accessToken);
+        const asyncToken = await AsyncStorage.getItem("newtoken")
+          .then(value => console.log(value))
+          .done();
       })
       .catch(function(error) {
         console.log(error);
@@ -48,31 +61,15 @@ class Access extends Component {
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
           />
+          <Button raised primary={true} onPress={this.loginClick}>
+            Login
+          </Button>
           <Button
             raised
             primary={true}
-            onPress={() => {
-              console.log(this.state.username, this.state.password);
-              axios
-                .post("http://10.201.233.38:8080/access", {
-                  auth: {
-                    username: this.state.username,
-                    password: this.state.password
-                  },
-                  headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    Accept: "application/json"
-                  }
-                })
-                .then(function(response) {
-                  console.log(response);
-                })
-                .catch(function(error) {
-                  console.log(error);
-                });
-            }}
+            onPress={() => AsyncStorage.removeItem("token")}
           >
-            Login
+            Logout
           </Button>
         </KeyboardAvoidingView>
         <KeyboardAvoidingView style={styles.section}>
