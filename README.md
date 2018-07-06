@@ -14,4 +14,8 @@ Run locally:
 
     npm run native
 
+Start all at once:
+
+    	npm start
+
 Have fun!
