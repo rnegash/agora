@@ -16,6 +16,6 @@ Run locally:
 
 Start all at once:
 
-    	npm start
+    npm start
 
 Have fun!
