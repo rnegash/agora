@@ -1,0 +1,24 @@
+{
+  "name": "agora",
+  "version": "1.0.0",
+  "description": "Daily philosophy challenge app",
+  "main": "index.js",
+  "dependencies": {
+    "express-session": "^1.15.6",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "react-native-elements": "^0.19.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server": "cd server && nodemon server.js",
+    "native": "cd agora-native && npm start",
+    "web": "cd agora-app && npm start"
+  },
+  "author": "rufael.negash@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rnegash/agora/issues"
+  },
+  "homepage": "https://github.com/rnegash/agora#readme"
+}

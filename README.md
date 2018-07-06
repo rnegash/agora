@@ -2,17 +2,16 @@
 
 Daily philosophy challenge app
 
-
 Setup:
 
-	npm install
+    npm install
 
 Run locally:
 
-	cd agora-app
-	npm start
-	
-	cd server
-	node server.js
+    npm run server
+
+    npm run web
+
+    npm run native
 
 Have fun!
