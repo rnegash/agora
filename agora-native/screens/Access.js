@@ -32,9 +32,7 @@ class Access extends Component {
         password: this.state.password
       })
       .then(async function(response) {
-        console.log("logged in");
         const accessToken = response.data.token;
-        console.log(accessToken);
 
         await AsyncStorage.setItem("newtoken", accessToken);
         const asyncToken = await AsyncStorage.getItem("newtoken")

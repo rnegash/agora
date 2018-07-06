@@ -18,6 +18,7 @@ class ViewOthersResponses extends Component {
     this.state = {
       responses: []
     };
+    this.getOtherUsersAnswers = this.getOtherUsersAnswers.bind(this);
   }
 
   static navigationOptions = {
@@ -30,8 +31,6 @@ class ViewOthersResponses extends Component {
 
   getOtherUsersAnswers() {
     const token = AsyncStorage.getItem("token").then(value => {
-      console.log("this is here", value);
-
       axios
         .get("http://10.201.233.38:8080/response", {
           params: { challengeId: 3 },
@@ -39,12 +38,11 @@ class ViewOthersResponses extends Component {
             Authorization: `Bearer ${value}`
           }
         })
-        .then(function(response) {
+        .then(response => {
           let responses = response.data;
           this.setState({ responses: responses });
-          console.log(response);
         })
-        .catch(function(error) {
+        .catch(error => {
           console.log(error);
         });
     });

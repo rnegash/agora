@@ -29,8 +29,6 @@ class MyPastResponses extends Component {
 
   getMyResponses() {
     const token = AsyncStorage.getItem("token").then(value => {
-      console.log("this is here", value);
-
       axios
         .get("http://10.201.233.38:8080/response/user", {
           params: { challengeId: 3 },
@@ -41,7 +39,6 @@ class MyPastResponses extends Component {
         .then(response => {
           let responses = response.data;
           this.setState({ responses: responses });
-          console.log(response);
         })
         .catch(error => {
           console.log(error);
