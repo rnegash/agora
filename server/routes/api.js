@@ -76,6 +76,8 @@ router.post(
     let userResponse = req.body.response;
     let userId = req.user === undefined ? 0 : req.user.id;
     let challengeId = req.body.challengeId;
+    console.log(`got response ${userResponse} ${userId} ${challengeId}`);
+
     db.run(
       "INSERT INTO Response(id, response, userId, challengeId) VALUES (?, ?, ?, ?);",
       [null, userResponse, userId, challengeId],
@@ -83,6 +85,7 @@ router.post(
         if (err) {
           console.error(err.message);
         }
+        console.log(`posted response ${userResponse} ${userId} ${challengeId}`);
         res.send(`posted response ${userResponse} ${userId} ${challengeId}`);
       }
     );
