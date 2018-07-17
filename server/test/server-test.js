@@ -12,7 +12,7 @@ describe("test hello world", () => {
 });
 
 describe("login authentication", () => {
-  it("should return a token if my credentials are authenticated", () => {
+  it("should return a token if my credentials are authenticated", done => {
     request.post(
       {
         url: "http://localhost:8080/access",
@@ -23,8 +23,9 @@ describe("login authentication", () => {
         expect(body).to.be.a("string");
       }
     );
+    done();
   });
-  it("should not return a token if my credentials are authenticated", () => {
+  it("should not return a token if my credentials are authenticated", done => {
     request.post(
       {
         url: "http://localhost:8080/access",
@@ -34,11 +35,12 @@ describe("login authentication", () => {
         expect(response.statusCode).to.equal(400);
       }
     );
+    done();
   });
 });
 
 describe("authenticated  users should be able to post response, and get responselists", () => {
-  it("should return status code 200 if response was successfully posted", () => {
+  it("should return status code 200 if response was successfully posted", done => {
     request.post(
       {
         url: "http://localhost:8080/access",
@@ -63,6 +65,7 @@ describe("authenticated  users should be able to post response, and get response
         );
       }
     );
+    done();
   });
   it("should return users own past responses", done => {
     request.post(
@@ -89,11 +92,11 @@ describe("authenticated  users should be able to post response, and get response
               }
             }
             expect(response.statusCode).to.equal(200);
-            done();
           }
         );
       }
     );
+    done();
   });
 
   it("should return other users answers on the daily challenge", done => {
@@ -122,16 +125,16 @@ describe("authenticated  users should be able to post response, and get response
               }
             }
             expect(response.statusCode).to.equal(200);
-            done();
           }
         );
       }
     );
+    done();
   });
 });
 
 describe("should be able to register with email and password", () => {
-  it("return status code 200 if successfully registered", () => {
+  it("return status code 200 if successfully registered", done => {
     request.post(
       {
         url: "http://localhost:8080/register",
@@ -141,5 +144,6 @@ describe("should be able to register with email and password", () => {
         expect(response.statusCode).to.equal(200);
       }
     );
+    done();
   });
 });
