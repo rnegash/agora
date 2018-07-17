@@ -25,6 +25,7 @@ describe("login authentication", () => {
         form: { username: "rufael@hej.com", password: "hejhej" }
       },
       (error, response, body) => {
+        const authToken = JSON.parse(response.body).token;
         expect(body).to.be.a("string");
       }
     );
@@ -37,6 +38,57 @@ describe("login authentication", () => {
       },
       (error, response, body) => {
         expect(response.statusCode).to.equal(400);
+      }
+    );
+  });
+});
+
+describe("authenticated should be able to post response, and get responselists", () => {
+  it("should return status code 200 if response was successfully posted", () => {
+    request.post(
+      {
+        url: "http://localhost:8080/access",
+        form: { username: "rufael@hej.com", password: "hejhej" }
+      },
+      (error, response, body) => {
+        const authToken = JSON.parse(response.body).token;
+        request.post(
+          {
+            url: "http://localhost:8080/response",
+            headers: {
+              Authorization: `Bearer ${authToken}`
+            },
+            form: {
+              response: "chaiResponse",
+              challengeId: 1
+            }
+          },
+          (error, response, body) => {
+            expect(response.statusCode).to.equal(200);
+          }
+        );
+      }
+    );
+  });
+  it("should return users own past responses", () => {
+    request.post(
+      {
+        url: "http://localhost:8080/access",
+        form: { username: "rufael@hej.com", password: "hejhej" }
+      },
+      (error, response, body) => {
+        const authToken = JSON.parse(response.body).token;
+        request.get(
+          {
+            url: "http://localhost:8080/response/user",
+            headers: {
+              Authorization: `Bearer ${authToken}`
+            }
+          },
+          (error, response, body) => {
+            expect(response.statusCode).to.equal(200);
+          }
+        );
       }
     );
   });
