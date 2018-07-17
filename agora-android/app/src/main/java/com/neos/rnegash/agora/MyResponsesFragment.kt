@@ -45,7 +45,7 @@ class MyResponsesFragment : Fragment() {
         val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .client(defaultHttpClient)
-                .baseUrl("http://10.201.233.23:8080/").build()
+                .baseUrl("http://10.201.233.24:8080/").build()
 
         async(UI) {
             val context = this@MyResponsesFragment.context ?: return@async

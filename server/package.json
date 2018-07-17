@@ -5,11 +5,13 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
     "codeceptjs": "^1.2.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.3.0",
+    "mocha": "^5.2.0",
     "morgan": "^1.9.0",
     "nightmare": "^3.0.1",
     "nightmare-upload": "^0.1.1",
@@ -21,9 +23,11 @@
     "path": "^0.12.7",
     "sqlite3": "^4.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "request": "^2.87.0"
+  },
   "scripts": {
-    "test": "test",
+    "test": "mocha test --watch",
     "start": "node server.js"
   },
   "author": "",
