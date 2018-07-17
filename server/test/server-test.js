@@ -2,14 +2,8 @@ const expect = require("chai").expect;
 const request = require("request");
 console.log("*-v-*|*-v-*|*-v-*|*-v-*|*-v-*|*-v-*|*-v-*|*-v-*|*-v-*|*-v-*");
 
-describe("test case", () => {
-  it("should print", () => {
-    expect("hej").to.equal("hej");
-  });
-});
-
 describe("test hello world", () => {
-  it("should print", done => {
+  it("should print hello world", done => {
     request("http://localhost:8080/access", (error, response, body) => {
       expect(body).to.equal("Hello world!");
       done();
@@ -43,7 +37,7 @@ describe("login authentication", () => {
   });
 });
 
-describe("authenticated should be able to post response, and get responselists", () => {
+describe("authenticated  users should be able to post response, and get responselists", () => {
   it("should return status code 200 if response was successfully posted", () => {
     request.post(
       {
@@ -98,6 +92,53 @@ describe("authenticated should be able to post response, and get responselists",
             done();
           }
         );
+      }
+    );
+  });
+
+  it("should return other users answers on the daily challenge", done => {
+    request.post(
+      {
+        url: "http://localhost:8080/access",
+        form: { username: "rufael@hej.com", password: "hejhej" }
+      },
+      (error, response, body) => {
+        const authToken = JSON.parse(response.body).token;
+        request.get(
+          {
+            url: "http://localhost:8080/response",
+            headers: {
+              Authorization: `Bearer ${authToken}`
+            },
+            form: { challengeId: 1, response: "I think its great" }
+          },
+          (error, response, body) => {
+            const responses = JSON.parse(response.body);
+            for (let key in responses) {
+              if (error) {
+                throw error;
+              } else {
+                expect(responses[key].userId).to.not.equal(1);
+              }
+            }
+            expect(response.statusCode).to.equal(200);
+            done();
+          }
+        );
+      }
+    );
+  });
+});
+
+describe("should be able to register with email and password", () => {
+  it("return status code 200 if successfully registered", () => {
+    request.post(
+      {
+        url: "http://localhost:8080/register",
+        form: { username: "newuser@hej.com", password: "hejhej" }
+      },
+      (error, response, body) => {
+        expect(response.statusCode).to.equal(200);
       }
     );
   });
