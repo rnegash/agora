@@ -70,7 +70,7 @@ describe("authenticated should be able to post response, and get responselists",
       }
     );
   });
-  it("should return users own past responses", () => {
+  it("should return users own past responses", done => {
     request.post(
       {
         url: "http://localhost:8080/access",
@@ -86,7 +86,16 @@ describe("authenticated should be able to post response, and get responselists",
             }
           },
           (error, response, body) => {
+            const responses = JSON.parse(response.body);
+            for (let key in responses) {
+              if (error) {
+                throw error;
+              } else {
+                expect(responses[key].userId).to.equal(1);
+              }
+            }
             expect(response.statusCode).to.equal(200);
+            done();
           }
         );
       }
