@@ -1,6 +1,6 @@
 # agora
 
-Daily philosophy challenge app
+Daily philosophy challenge app.
 
 Setup:
 
